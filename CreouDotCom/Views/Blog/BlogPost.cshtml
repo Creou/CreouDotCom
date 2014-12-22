@@ -1,0 +1,20 @@
+﻿@model SimpleBlogger.Mvc.BlogPost
+@{
+    ViewBag.Title = String.Format("Blog | {0}", Model.Title);
+    ViewBag.MenuPage = CreouDotCom.ViewModels.MenuPage.Other;
+}
+<div class="content">
+    <div class="contentHeader">
+        <h1>
+            @Model.Title</h1>
+    </div>
+    <div id="blogContent">
+    @Html.Raw(Model.PostHtml)
+    </div>
+</div>
+@*@section SideBar
+{
+    <p>
+        Tag Cloud</p>
+}
+*@

@@ -1,0 +1,651 @@
+﻿@using CreouDotCom.ViewModels
+@model CreouDotCom.ViewModels.BaseViewModel
+@{
+    ViewBag.Title = "Cv";
+    ViewBag.MenuPage = CreouDotCom.ViewModels.MenuPage.CV;
+}
+@section Header
+{
+    <link href="/css/tech-match.less" rel="stylesheet" type="text/css" />
+
+    <script src="/scripts/knockout-2.2.1.min.js" type="text/javascript"></script>
+    <script src="/scripts/underscore.min.js" type="text/javascript"></script>
+
+    <script src="/scripts/tech-match.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            techMatch.init($('#tech-match')[0],
+                [
+                    { name: 'C# .Net',              ex: 9.5,    good: true,   im: 10, cm: 'With eight years of experience, I have been using C# and .Net since version 2.0 and have wide ranging knowledge of most parts of the framework.' },
+                    { name: 'Javascript',           ex: 9,      good: true,   im: 9,  cm: 'I am a strong JavaScript programmer with the ability to go far beyond simple jQuery usage. I understand the intricacies of prototypal inheritance.' },
+                    { name: 'HTML',                 ex: 9,      good: true,   im: 9,  cm: 'Several years of experience with both HTML, XHTML including use of HTML5 semantic markup.'},
+                    { name: 'CSS',                  ex: 8,      good: true,   im: 9,  cm: 'I\'m comfortable manually writing CSS in both static and flexible layouts. I am particularly excited by what CSS3 brings to the web toolkit.' },
+                    { name: 'Asp.Net MVC',          ex: 8,      good: true,   im: 9,  cm: 'Asp.Net MVC fits perfectly with the way I prefer to develop websites with strong focus on the markup. Although I have traditionally been a desktop apps developer, Asp.net MVC is the framework that opened me up to web development. Since first using it in 2011 I have completed several successful projects using it.' },
+                                                                
+                    { name: 'Entity Framework',     ex: 8,      good: true,   im: 9,  cm: 'I\'ve made regular use of Entity framework since version 1. My preference is for use the code first approach, but I am equally comfortable with the model and database first forms.' },
+                    { name: 'NHibernate',           ex: 5,      good: true,   im: 8,  cm: 'I have worked on projects using NHibernate in the past, and while I\'m not intimately familiar with it I am confident that it is something I could adapt to quickly.' },
+                    { name: 'Sql Server',           ex: 7,      good: true,   im: 8,  cm: 'While I\'m certainly no DBA, I am relatively confident with the use of SQL sever for storage and querying' },
+                    { name: 'Oracle',               ex: 2,      good: true,   im: 8,  cm: 'Work on a past project that supported multiple database backends has left me with a passing knowledge of oracle databases.' },
+
+                    { name: 'jQuery',               ex: 8,      good: true,   im: 8,  cm: 'jQuery is indispensible on the web. While I do not consider myself dependant on it, jQuery has certainly become a key part of my development workflow' },
+                    { name: 'Modernizr',            ex: 8,      good: true,   im: 8,  cm: 'I find Modernizr Invaluable when working on projects that support legacy browsers.' },
+                    { name: 'Underscore.js',        ex: 7,      good: true,   im: 8,  cm: 'I find that underscore picks up where jQuery ends and provides the perfect accompaniment. I\'m especially a fan of underscores array manipulation functions.' },
+                    { name: 'Backbone.js',          ex: 7,      good: true,   im: 8,  cm: 'I\'m a huge fan of the Backbone.js framework for single page apps, but I generally prefer Knockout.js for regular websites.' },
+                    { name: 'Knockout.js',          ex: 7,      good: true,   im: 8,  cm: 'When it comes to adding complex functionality to regular websites Knockout.js is one of my favourite frameworks.' },
+                    { name: 'Handlebars.js',        ex: 8,      good: true,   im: 8,  cm: '' },
+                    { name: 'Backbone Marionette',  ex: 7,      good: true,   im: 8,  cm: '' },
+                                                                
+                    { name: 'Jurassic.Net',         ex: 5,      good: true,   im: 7,  cm: '' },
+                                                                
+                    { name: 'Git',                  ex: 8,      good: true,   im: 7,  cm: 'I became a true git convert in 2012 when for the first time I joined a team using it internally. Using it for a major project really opened my eyes to the power of distributed source control. Given the choice I would never go back. I prefer to use the command line.' },
+                    { name: 'Subversion',           ex: 8,      good: true,   im: 7,  cm: 'Occasional subversion user. I\'m comfortable using it, but have only occasionally been required to configure it.' },
+                    { name: 'Tfs',                  ex: 8,      good: true,   im: 7,  cm: 'Regular TFS user, rarely involved in the configuration however.' },
+                                                                
+                    { name: 'Winforms',             ex: 8,      good: true,   im: 7,  cm: 'Prior to WPF Winforms was my primary tool for application development. I am comfortable using it, however WPF will always take precedence for any new projects.' },
+                    { name: 'WPF',                  ex: 8,      good: true,   im: 7,  cm: 'I initially discovered WPF when it was still known as Avalon. I have since worked on several large scale projects using WPF and it is my framework of choice for desktop based application development.' },
+                    { name: 'XNA / Monogame',       ex: 8,      good: true,   im: 7,  cm: 'My solo game project (Boxed In) was started in XNA, and ported to Monogame when Microsoft announced Windows 8 modern UI would not support XNA.' },
+                    { name: 'Silverlight',          ex: 5,      good: true,   im: 7,  cm: 'Thanks to my strong XAML knowledge via WPF, on several occasions I have found myself able to implement Silverlight web projects quickly and easily.' },
+                    { name: 'WCF',                  ex: 5,      good: true,   im: 7,  cm: 'WCF is a tool to me. I make use of it when necessary.' },
+                                                                
+                    { name: 'Windows Phone 7/8',    ex: 6,      good: true,   im: 7,  cm: 'I\'ve done plenty of work on Windows Phone apps via XNA, and although I\'ve not specifically done much with the Windows Phone Silverlight framework, I\'m confident that my desktop XAML skills will make the transition smoothly.', plc: { message: 'I am particularly interested in doing Windows Phone 8 development, so this project is certainly interesting.', good: true } },
+                    { name: 'Windows 8 - Modern UI',ex: 5,      good: true,   im: 7,  cm: '', plc: { message: 'Although I\'ve done little Windows 8 specifc work, it\'s something I\'m keen to get in to, so please get in touch to discuss this project.', good: true } },
+                                                                
+                    { name: 'Python',               ex: 3,      good: true,   im: 7,  cm: 'Over the past year I\'ve run two 6 week Python courses for students at a local school. Although my Python experience is fairly limited, it is something that I think I could easily adapt to if required.' },
+                                                                  
+                    { name: 'Asp.Net Webforms',     ex: 1,      good: false,  im: 7,  cm: 'I prefer to avoid Webforms whenever possible. It does not fit well with my development practises. I will occasionally take on projects that involve a small amount of legacy Webforms, but I will generally not undertake new projects using this technology.' },
+                    { name: 'Sharepoint',           ex: 2,      good: false,  im: 7,  cm: 'Although I do have some limited Sharepoint experience it is not a technology that I enjoy working with, so prefer to avoid it.', plc: { message: 'I prefer not to take on projects that have a large Sharepoint component.', good: false } },
+                    { name: 'VB6',                  ex: 7,      good: false,  im: 7,  cm: 'Although I have plenty of VB6 experience, it is an old technology that I would prefer not to work with again.', plc: { message: 'I prefer not to take on projects that have a large VB6 component.', good: false } },
+                ],
+                [
+                    { min: 90, colour: 'green', message: 'I\'m a fantastic match for this project. I have plenty of experience in all of the technologies involved.' },
+                    { min: 70, colour: 'green', message: 'This project is a great match for my skill set. I have a good level of experience for the majority of technologies involved.'},
+                    { min: 50, colour: 'green', message: 'While there are certainly some technologies in this project that I\'m less familiar with it shouldn\'t take me long to adapt. In past projects I\'ve proven myself capable of quickly adapting to new technologies especially when they are in a domain I am comfortable in.' },
+                    { min: 15, colour: 'orange', message: 'It looks like you have a lot of technologies that I am less experienced with, it\'s possible I might not be your perfect match. Don\'t rule me out entirely however, as part of an existing team there may still be a lot I can bring. I have had plenty of successful projects in the past that involved entirely new technologies.' },
+                    { min: 0, colour: 'red', message: 'There really doesn\'t seem to be much crossover between my skills and your project. I would be hesitant to reject it purely based on an automated matching tool so why not contact me to discuss details.' }
+                ]
+            );
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+}
+<div id="cv" class="content">
+    <div class="contentHeader">
+        @*<img id="cvImage" src="@Url.Content("/content/sps.jpg")" alt="Simon P Stevens image" />*@
+        <h1 class="cvHeader">
+            <span class="firstCaps">Simon</span><span class="firstCaps">P</span><span class="firstCaps">Stevens</span></h1>
+        <p id="employmentStatusMessage">
+            Next available for work 6th May 2013</p>
+    </div>
+    <div id="cv">
+        <ul id="cvLinks">
+            <li><a href="@Url.Content("/content/cv/SimonPStevens-CV.pdf")">Download PDF format CV</a></li>
+            <li><a href="http://careers.stackoverflow.com/simonpstevens">StackExchange Careers CV</a></li>
+        </ul>
+
+        <div id="cvIntro">
+            <p>
+                I am a freelance software developer/consultant with eight years of experience across desktop
+                applications, web sites and mobile platforms.
+            </p>
+            <p>Select the technologies from below to see my experience with them and calculate my 
+                suitability for your project. Or browse my full CV below.
+            </p>
+        </div>
+
+        <div id="tech-match">
+            <ul id="choices" data-bind="foreach: tech">
+                <li data-bind="click: toggleSelect, attr: {'data-importance': im, 'data-selected': selected, 'data-good': good, 'data-custom': isCustom}">
+                    <div>
+                        <span data-bind="text: name"></span>
+                    </div>
+                </li>
+            </ul>
+
+            <form id="custom-tech">
+                <span>Can't see a technology you use?</span>
+                <input type="text" />
+                <button type="submit">Add tech</button>
+            </form>
+
+            <div class="formContainer resultsContainer" data-bind="visible: selected().length > 0">
+                <div class="outerFormTitle">
+                    <div class="formTitle">Results</div>
+                </div>
+
+                <div id="compatibility">
+                    <div class="compatibility-rating">Compatibility rating <span data-bind="style: {color: overallCompatibilityBoundary().colour}"><span data-bind="text: overallCompatibility"></span>%</span></div>
+                    <div class="compatibility-message" data-bind="text: overallCompatibilityBoundary().message"></div>
+                    
+                    <p>
+                        <a data-bind="attr: {href: contactUrl}">Contact me regarding this project</a>
+                    </p>
+
+                    <ul class="tech-compatibility-messages" data-bind="foreach: selectedWithPlc">
+                        <li>
+                            <div data-bind="text: plc().message, attr: {'data-good': plc().good}"></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="breakdown">
+                    <div>Full project breakdown:</div>
+                    <ul  data-bind="foreach: selected">
+                        <li>
+                            <div class="tech-details" data-bind="attr: {'data-custom': isCustom() ? true : false}">
+                                <span class="tech-name"  data-bind="text: name"></span>
+                                <span class="experience-graph">
+                                    <span class="graph-value" data-bind="style: {width: width}, attr: {'data-graph-category': graphCategory}"></span>
+                                </span>
+                            </div>
+                            <div class="tech-experience" data-bind="text: cm"></div>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>           
+        </div>
+
+        <div id="tabs" class="cvSectionContent">
+            <ul class="tabMenu">
+                <li><a href="#tabs-Overview">Overview</a></li>
+                <li><a href="#tabs-Projects">Projects</a></li>
+                <li><a href="#tabs-Community">Community</a></li>
+                <li><a href="#tabs-Employment">Employment</a></li>
+                <li><a href="#tabs-Education">Education</a></li>
+            </ul>
+            <div id="tabs-Overview" class="cvSection">
+                <h1>
+                    Overview</h1>
+                <p>
+                    My primary area of expertise is with the Microsoft stack. I have been using C#.Net since the release of version 2.0. For windows application development I favour a WPF/XAML user interface combined with an Entity Framework ORM and SQL Server database.
+                </p>
+                <p>
+                    For websites, I am competent in the use of the ASP.Net MVC framework, combined with expertise in Javascript, HTML 5 and CSS 3. Recent projects have included significant use of Javascript to develop highly interactive ‘single page app’ websites.
+                </p>
+                <p>
+                    I am able to learn new technologies quickly. I can rapidly apply my previous experience to an unfamiliar code base.
+                </p>
+@*              <div class="techOverview">
+                    <p>
+                        Languages and frameworks:
+                    </p>
+                    <ul>
+                        <li>C#/.Net v2.0 - v4</li>
+                        <li>WPF, Prism, MVVM</li>
+                        <li>Unity</li>
+                        <li>WCF</li>
+                        <li>WinForms</li>
+                        <li>Entity Framework</li>
+                        <li>Linq to SQL</li>
+                        <li>ADO.Net</li>
+                        <li>NHibernate</li>
+                    </ul>
+                </div>
+                <div class="techOverview">
+                    <p>
+                        Web technologies:</p>
+                    <ul>
+                        <li>Asp.Net MVC 3, Razor</li>
+                        <li>XHTML, HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript, jQuery, Modernizr</li>
+                        <li>Silverlight 4</li>
+                        <li>RIA Services</li>
+                    </ul>
+                </div>
+                <div class="techOverview">
+                    <p>
+                        Databases:</p>
+                    <ul>
+                        <li>SQL Server 2000/2005/2008</li>
+                        <li>Oracle 8/9/10</li>
+                    </ul>
+                </div>
+                <div class="techOverview">
+                    <p>
+                        Tools:
+                    </p>
+                    <ul>
+                        <li>TFS</li>
+                        <li>Test Driven Development<br />
+                            [NUnit, MSTest]</li>
+                        <li>Subversion</li>
+                        <li>Git</li>
+                        <li>CruiseControl.net</li>
+                        <li>BugTracker.net</li>
+                    </ul>
+                </div>
+                <div class="techOverview">
+                    <p>
+                        Other:
+                    </p>
+                    <ul>
+                        <li>C (Arduino platform)</li>
+                        <li>.Net micro framework v4</li>
+                        <li>Windows Phone 7</li>
+                        <li>XNA</li>
+                    </ul>
+                </div>*@
+                <div class="clear"></div>
+                @*<img id="overviewImage" src="@Url.Content("/content/cv/Overview.png")" alt="Experience Overview" />*@
+            </div>
+            <div id="tabs-Projects" class="cvSection">
+                <h1>
+                    Projects</h1>
+                <p>
+                    I have several software development projects I work on which I use to expand on my knowledge of current technologies. Source code for some projects is available on <a href="https://github.com/SimonPStevens">GitHub</a>.
+                </p>
+                <ul>
+                    <li><a href="http://creou.com/blog/oneweekgame">Boxed In</a> - Windows 8 / Windows Phone game.
+                        <ul>
+                            <li>Beta version created in one week.</li>
+                            <li>Currently preparing final version for market place release.</li>
+                            <li>Prize winner in <a href="http://api.codeproject.com/Articles/480934/Boxed-In-A-Windows-8-Puzzle-Game">Codeproject/Intel AppInnovation competition</a>.</li>
+                            <li>Demo available on request.</li>
+                        </ul>
+                        
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v4</li>
+                            <li>XNA 4/MonoGame</li>
+                            <li>Windows Phone 7/8</li>
+                            <li>Windows 8</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://simonpstevens.com/Projects/OISCVM">OISC VM</a> - Virtual machine
+                        environment and assembler for a "One Instruction Set Computing" CPU. Based
+                        on the "subtract and branch if less than or equal to zero" instruction.
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v4</li>
+                            <li>SUBLEQ Assembly</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://simonpstevens.com/Projects/Microcontrollers">Microcontroller programming</a>
+                        - Learning to program Arduino and Netduino microcontrollers. Goal is to build a
+                        small robot.
+                        <br />
+                        <br />
+                        Delivered introduction talk at NxtGenUg in December 2010.
+                        <ul class="techList">
+                            <li>C</li>
+                            <li>C#.Net&nbsp;Microframework&nbsp;v4</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://simonpstevens.com/Projects/PhAirHockey">Ph-Air Hockey</a> - Air
+                        hockey game for the Windows Phone 7 platform, and XNA collision library.
+                        <br />
+                        <br />
+                        Won first prize in WP7 game competition at XNA-UK.
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v4</li>
+                            <li>XNA</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://creou.com">Creou website</a> - Company website, written as a contact
+                        point for clients and to aid in learning web technologies.
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v4</li>
+                            <li>ASP.NET&nbsp;MVC&nbsp;v3</li>
+                            <li>Razor</li>
+                            <li>XHTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>jQuery</li>
+                            <li>Modernizr</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="tabs-Community" class="cvSection">
+                <h1>
+                    Community
+                </h1>
+                <p>
+                    I take an active role in and enjoy contributing regularly to the development community.
+                </p>
+                <ul>
+                    <li>
+                        Python Club
+                        <ul>
+                            <li>Two 6 week courses at a local school teaching game programming.</li>
+                            <li>GCSE and A-Level students using Python and PyGame.	</li>
+                            <li>Both were very successful and the school and pupils have requested that I run more in the future.</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://www.nxtgenug.net">NxtGenUG</a> Member and speaker
+                        <ul>
+                            <li>Delivered three 20 minute talks:<ul>
+                                <li><a href="http://www.nxtgenug.net/ViewEvent.aspx?EventID=333">EF4 POCO - Zero Code Approach</a> (Rated 7.2/9)</li>
+                                <li><a href="http://www.nxtgenug.net/ViewEvent.aspx?EventID=334">A Beginner's Guide to Programmable Microcontrollers</a> (Rated 8.1/9)</li>
+                                <li><a href="http://www.nxtgenug.net/ViewEvent.aspx?EventID=461">Introduction to XNA</a> (Rated 8.5/9)</li>                                   
+                            </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="http://xna-uk.net/groups/xna_uk_user_group_meetings/default.aspx">XNA-UK
+                        UG</a> (2010-2012) Organiser and speaker
+                        <ul>
+                            <li>Involved in organisation of meetings and website</li>
+                            <li>Delivered one 20 minute talk:<ul>
+                                <li>Collision Physics with Vectors - (<a href="http://simonpstevens.com/Articles/VectorCollisionPhysics">Write
+                                    up</a>)</li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Global Games Jam 2012
+                        <ul>
+                            <li>Awarded 2nd place for the Birmingham region in Global Games Jam 2012 for our game
+                                <a href="http://globalgamejam.org/2012/skitz">Skitz</a>, written from scratch in
+                                just 2 days.</li>
+                        </ul>
+                    </li>
+                    <li>Stackoverflow
+                        <ul>
+                            <li><a href="http://stackoverflow.com/users/119738">10k+ reputation</a></li>
+                        </ul>
+                    </li>
+                    <li>The CodeProject
+                        <ul>
+                            <li><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=2924436">MVP
+                                award 2009</a></li>
+                            <li>Two published articles:<ul>
+                                <li><a href="http://www.codeproject.com/KB/cs/EventSafeTrigger.aspx">How to Safely Trigger
+                                    Events the Easy Way</a> (Rated 4.54/5)</li>
+                                <li><a href="http://www.codeproject.com/KB/dotnet/ConditionalCompilation.aspx">Building
+                                    and Maintaining Multiple Application Editions using Conditional Compilation</a>
+                                    (Rated 4.71/5)</li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="tabs-Employment" class="cvSection">
+                <h1>
+                    Employment history
+                </h1>
+                <ul class="cvEmplymentHistory">
+                    <li><a href="http://creou.com/">Creou Software</a> - 2011 - Present: Software Developer / Director.
+                        <br />
+                        <p>
+                            In May 2011 I left Hadley Industries to start Creou Software. Initially working
+                            as a software consultant and freelance developer with the long term goal of building
+                            a software products company.</p>
+                        <p>
+                            Contracts:
+                        </p>
+
+                        <p>
+                            <a href="http://bravissimo.com">Bravissimo Ltd</a> April 2012 – April 2013.
+                        </p>
+
+                         <ul>
+                            <li>Responsible for complete delivery of a brand new mobile website as part of a small team.
+                                <ul>
+                                    <li>Single page app architecture using Backbone.js and Marionette.</li>
+                                    <li>Handlebars.js templating with custom written Jurassic.net based pre-compilation engine.</li>
+                                    <li>HTML 5 semantic markup and CSS 3 effects.</li>
+                                    <li>Support for iPhone, Android and Windows Phone 7/8.</li>
+                                    <li>Asp.Net MVC 3 / razor server side.</li>
+                                </ul>
+                            </li>
+                            <li>Sole responsibility for:
+                                <ul>
+                                    <li>Development of new password security to use current best practices.</li>
+                                    <li>Implementation of new guest checkout system.</li>
+                                    <li>Implementation of new product review system.</li>
+                                </ul>
+                            </li>
+                         </ul>
+
+                        <ul class="techList">
+                            <li>Javascript</li>
+                            <li>HTML&nbsp;5</li>
+                            <li>CSS&nbsp;3</li>
+                            <li>Backbone.js</li>
+                            <li>Backbone.Marionette</li>
+                            <li>jQuery</li>
+                            <li>Underscore.js</li>
+                            <li>Handlebars.js</li>
+                            <li>Jurassic.net</li>
+                            <li>C#.Net&nbsp;v4</li>
+                            <li>ASP.Net MVC 3</li>
+                            <li>Razor</li>
+                            <li>Git</li>
+                        </ul>
+
+                        <p>
+                            <a href="http://www.aquaintelligence.co.uk">Aqua Intelligence</a> March 2012 – May 2012.
+                        </p>
+
+                        <ul>
+                            <li>Contracted to complete development of Mercedes Benz Accelerate sales platform.
+                                <ul>
+                                    <li>ASP.Net MVC 3 / razor web app.</li>
+                                    <li>Full support for IE6 to 9.</li>
+                                    <li>Expertise gained and project delivered in limited time frame.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="techList">
+                            <li>C#.Net v4</li>
+                            <li>ASP.Net MVC 3</li>
+                            <li>Razor</li>
+                            <li>Entity framework</li>
+                            <li>SQL Server 2008</li>
+                            <li>TFS</li>
+                        </ul>
+
+                        <p>
+                            <a href="http://www.crimson.co.uk/default.aspx">Crimson</a> December 2011 – February 2012.
+                        </p>
+                        <ul>
+                            <li>Responsible for implementation of two new modules for existing PharmaBase platform.
+                                <ul>
+                                    <li>Coding of NSP and NRT modules on schedule with no prior SharePoint experience.</li>
+                                    <li>Full support for IE6 to 9.</li>
+                                    <li>Produced SharePoint packages to be integrated with pharmacy sites.</li>
+                                    <li>WCF Data Services back end.</li>
+                                    <li>Developed new custom SharePoint navigation provide to smooth the deployment of the
+                                        new modules.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v3.5/v4</li>
+                            <li>Sharepoint 2010</li>
+                            <li>Asp.Net</li>
+                            <li>WCF&nbsp;Data&nbsp;Services</li>
+                            <li>Entity&nbsp;framework</li>
+                            <li>SQL&nbsp;Server&nbsp;2008</li>
+                            <li>TFS</li>
+                        </ul>
+                        <p>
+                             <a href="http://www.grs.co.uk/">Greenhous Group</a> May 2011 – November 2011.
+                        </p>
+                        <ul>
+                            <li>Assisted with final development drive 8 weeks before the 1.0 release
+                                of their new internal vehicle management system.
+                                <ul>
+                                    <li>Required to be quickly proficient with their existing system.</li>
+                                    <li>Supported the existing development team in bug fixing and performance tuning.</li>
+                                    <li>WPF / Prism application.</li>
+                                </ul>
+                            </li>
+                            <li>Development of prototype retail website.
+                                <ul>
+                                    <li>Entirely new website written in Asp.Net MVC 3.</li>
+                                    <li>Made use of progressive enhancement with CSS3 and HTML5 features along with jQuery fallbacks.</li>
+                                    <li>Full support for IE6 to 9, Chrome and Firefox.</li>
+                                    <li>Silverlight components.</li>
+                                    <li>Entity framework ORM.</li>
+                                </ul>
+                            </li>
+                            <li>Development of MOT/Service booking system
+                                <ul>
+                                    <li>Required to implement a new MOT/Service booking system for 3 independent branches.</li>
+                                    <li>Very short time frame; designed and delivered in less than 3 weeks.</li>
+                                    <li>Silverlight application with RIA services connection to Entity Framework/SQL Server store.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="techList">
+                            <li>C#/.Net v3.5/4</li>
+                            <li>WPF</li>
+                            <li>Prism</li>
+                            <li>Asp.Net&nbsp;MVC&nbsp;3</li>
+                            <li>Razor</li>
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>jQuery</li>
+                            <li>Modernizr</li>
+                            <li>Silverlight&nbsp;4</li>
+                            <li>RIA&nbsp;Services</li>
+                            <li>NHibernate</li>
+                            <li>Entity&nbsp;framework</li>
+                            <li>SQL&nbsp;Server&nbsp;2005/2008</li>
+                            <li>TFS</li>
+                        </ul>
+                        @*OLD
+                        <p>
+                            Contracts:<br />
+                            Greenhous Group (<a href="http://www.grs.co.uk/">GRS</a>) – May 2011 – Sept 2011.
+                        </p>
+                        <ul>
+                            <li>Assisted with development on 1.0 release of their new internal vehicle management
+                                system.</li><li>Development of prototype retail website.</li><li>Development of internal
+                                    MOT/Service booking Silverlight application.</li>
+                        </ul>
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v3.5/v4</li>
+                            <li>Asp.Net&nbsp;MVC&nbsp;3</li>
+                            <li>Razor</li>
+                            <li>Silverlight</li>
+                            <li>RIA&nbsp;Services</li>
+                            <li>Entity&nbsp;Framework</li>
+                            <li>NHibernate</li>
+                            <li>SQL&nbsp;Server&nbsp;2005/2008</li>
+                            <li>TFS</li>
+                        </ul>*@ </li>
+                    <li><a href="http://www.hadleygroup.co.uk/">Hadley Group</a> 2007 - 2011: Analyst Software Developer
+                        <p>
+                            The Hadley Group is a major producer of cold rolled steel section. My role in Hadley’s
+                            technology department was development of systems to support both the manufacturing
+                            process and business operations. I was also expected to drive innovation and improvement
+                            around the group.
+                        </p>
+                        <ul>
+                            <li>Initiation and development of an "Electronic Production Board" project. Generating
+                                £10,000 - £15,000 per installation for 4 installations. Achieved 4 times the original
+                                target for the project revenue. Responsible for full product life cycle from inception
+                                to launch within 9 months of joining the company.<br />
+                                @*<%: Html.ActionLink("Read more...", "ElectronicProductionBoard", "MyCV")%>*@
+                            </li>
+                            <li>Responsible for development of a "Remote Machine Monitor" and advancing the project
+                                from the originally planned 6 installations to 41 installations across the company
+                                generating £315,000 in additional revenue for my department.<br />
+                                @*<%: Html.ActionLink("Read more...", "RemoteMachineMonitor", "MyCV")%>*@ </li>
+                            <li>Worked closely with electrical and hardware engineers using PLCs, CLMs and SCADA
+                                systems to build systems that integrate with machinery to provide control and capture
+                                information from a range of sources.</li>
+                            <li>Key participant in the design and code of a new quotation management system to improve
+                                the work flow and structure of the customer acquisition process.</li>
+                            <li>Implemented improved development practices including Subversion source control,
+                                unit testing, continuous integration and bug tracking.</li>
+                            <li>Responsible for liaisons with new clients and securing bespoke project work.
+                            </li>
+                        </ul>
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v3.5/v4</li>
+                            <li>Entity&nbsp;Framework</li>
+                            <li>WCF</li>
+                            <li>WPF</li>
+                            <li>MVVM</li>
+                            <li>WinForms</li>
+                            <li>MVC</li>
+                            <li>SQL&nbsp;Server&nbsp;2000/2005/2008</li>
+                            <li>RS-232&nbsp;Comms</li>
+                            <li>Sockets</li>
+                            <li>TCP/IP</li>
+                            <li>Test&nbsp;Driven&nbsp;Development</li>
+                            <li>NUnit</li>
+                            <li>MSTest</li>
+                            <li>Subversion</li>
+                            <li>CruiseControl.net</li>
+                            <li>BugTracker.net</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://www.cdcsoftware.com/en/Solutions/CDC-Enterprise-Feedback-Management-EFM">
+                        CDC Respond</a> 2005 - 2007: Software Developer @*<%--OLD LINK: <li>2005 - 2007: <a href="http://www.cdcsoftware.com/en/CDCRespond.aspx">CDC Respond</a>--%>*@
+                        <p>
+                            Respond’s primary product was a highly configurable enterprise class feedback management
+                            suite capable of supporting thousands of concurrent users and millions of customer
+                            records. Supporting both desktop client and web user interfaces Respond was primarily
+                            targeted at the financial sector customers included Barclays and Lloyds TSB.
+                        </p>
+                        <ul>
+                            <li>Key participant in three maintenance releases of Respond's legacy product and new
+                                development on their flagship replacement.</li>
+                            <li>Responsible for design and code of several bespoke projects to secure contracts
+                                valued in excess of £500,000.</li>
+                            <li>Responsible for development of a ‘Record and replay’ plug-in to allow auditing and
+                                repeatability of configuration changes made to test/live environments.</li>
+                            <li>Responsible for design and development of a ‘Category linker’ system that correlated
+                                user entered categories to filter data and provide an enhanced user experience when
+                                using the web client.</li>
+                        </ul>
+                        <ul class="techList">
+                            <li>C#.Net&nbsp;v2</li>
+                            <li>Web Services</li>
+                            <li>WinForms</li>
+                            <li>MVC</li>
+                            <li>VB6</li>
+                            <li>ASP&nbsp;(Classic)</li>
+                            <li>HTML</li>
+                            <li>JavaScript</li>
+                            <li>SQL&nbsp;Server&nbsp;2000/2005</li>
+                            <li>Oracle&nbsp;8/9</li>
+                            <li>TFS</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="tabs-Education" class="cvSection">
+                <h1>
+                    Education
+                </h1>
+                <ul>
+                    <li>Microsoft Certifications
+                        <ul>
+                            <li>2009 - MCPD - Windows Developer</li>
+                            <li>2007 - MCTS - .Net Framework 2.0: Windows Applications.</li>
+                        </ul>
+                    </li>
+                    <li>The University Of Birmingham
+                        <ul>
+                            <li>2005 - BSc (with honours) Computer Science (1st class).</li>
+                        </ul>
+                    </li>
+                    <li>Lawrence Sheriff School - Rugby
+                        <ul>
+                            <li>2001 - A – levels: Computing (A) Maths (B) Physics (C).</li>
+                            <li>2001 - AS – levels: Electronics (A) General studies (B).</li>
+                            <li>1999 - GCSEs: 1 A*, 7 A’s, 3 B’s. Including English, Maths, Science and IT.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@section SideBar
+{
+    @{Html.RenderPartial("_Contact");}
+}

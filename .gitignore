@@ -1,0 +1,27 @@
+# Binaries #
+*.exe
+*.dll
+
+# User config #
+*.suo
+*.user
+
+.gitignore~
+*.swp
+
+bin/
+obj/
+*.cachefile
+
+# Don't put fonts in source control - they aren't part of the source. They are 3rd party. #
+CreouDotCom/Fonts
+
+packages/
+
+CreouDotCom.Publish.xml
+
+# Word temp files #
+~*
+
+# Windows thumbnail cache files #
+Thumbs.db

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery deferred</title>
+    <meta name="Date" content="2012-02-27T15:20:00Z" />
+    <meta name="PublishDate" content="2012-02-27T15:20:00Z" />
+    <meta name="Id" content="jquery-deferred" />
+    <meta name="Tags" content="jQuery, Javascript" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+    <meta name="PreviewImage" content="jquery-deferred_files/preview.jpg" />
+</head>
+<body>
+    <p>If you've used jQuery, you've probably used a <a href="http://api.jquery.com/category/deferred-object/">deferred</a> object. It's what jQuery returns from all it's ajax functions. Did you know that you can also create deferred wrappers around your own code.</p>
+    <p class="PreviewEnd" />
+    <p>All you have to do is create a new Deferred object, perform your asyncronous code within it, and call resolve when you are finished. You should also return a promise from the deferred object which your calling code can use to synchronise with. (The promise object is just a subset of deferred that prevents external code from mucking with the status of your deferred object)
+    <pre>
+function doSomethingDeferred() {
+    return new $.Deferred(function (deferred) {
+
+        // Do something async.
+        .
+        .
+        .
+
+        // If anything goes wrong, call reject.
+        deferred.reject(errorData);
+
+        // When finished, call resolve.
+        deferred.resolve(data);
+
+    }).promise(); // Return a promise to complete the deferred.
+}</pre>
+    <p>
+        You might be thinking why would you want to do this. Well the main reason is that you can make use jQuery's <a href="http://api.jquery.com/jquery.when/">$.when()</a> function. The when function takes multiple deferreds (or promises), and wraps them all in a single promise. This means you can combine your deferreds with jQueries inbuilt functions that return promises such as animations or ajax requests.
+    </p>
+    <pre>
+$.when(
+    doSomethingDeferred(),
+    doSomethingElseDeferred(),
+    doAnotherDeferred()
+).done(function(somethingResult, somethingElseResult, anotherResult) { 
+    // All deferreds are complete.
+}
+).fail(function () {
+    // One of the deferred calls failed.
+})
+    </pre>
+</body>
+</html>

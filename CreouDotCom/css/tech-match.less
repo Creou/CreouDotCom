@@ -1,0 +1,209 @@
+﻿.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.transition (@speed: 0.3s) {
+    -webkit-transition: all @speed ease-in-out;
+       -moz-transition: all @speed ease-in-out;
+        -ms-transition: all @speed ease-in-out;
+         -o-transition: all @speed ease-in-out;
+            transition: all @speed ease-in-out;  
+}
+
+.box-shadow (@size: 5px, @color: #5cbdf4) {
+    -webkit-box-shadow: 0 0 @size @size @color;
+    -moz-box-shadow: 0 0 @size @size @color;
+    box-shadow: 0 0 @size @size @color;
+}
+
+#tech-match {
+    #choices {
+		margin: 0px;
+
+        li {
+            border: 1px solid;
+            
+            background: black;
+            .rounded-corners(10px);
+
+            margin: 2px;
+            padding: 1px;
+		    list-style: none;
+            display: inline-block;
+            float: left;
+            text-align: center;
+            vertical-align: top;
+            border-spacing: 10px;
+            
+            .transition(0.2s);
+
+            div
+            {
+                display: table;
+                height: 100%;
+                width: 100%;
+                span {
+                    display: table-cell;
+                    vertical-align: middle;
+                    line-height: 0px;
+                }
+            }
+
+            &:hover {
+                background: #222222;
+                .transition(0.2s);
+
+                .box-shadow (2px, red);
+
+                &[data-good="true"] {
+                    .box-shadow (2px, #5cbdf4);
+                }
+                &[data-custom="true"] {
+                    .box-shadow (2px, white);
+                }
+            }
+
+            border-color: red; 
+            color: red;
+
+            &[data-good="true"] {
+                border-color: #5cbdf4; 
+                color: #5cbdf4;
+            }
+
+            &[data-custom="true"] {
+                border-color: white; 
+                color: white;
+            }
+
+            &[data-selected="true"] {
+                background: white;
+                .transition(0.2s);
+
+                &[data-custom="true"] {
+                    color: black;
+                }
+            }
+
+            &[data-importance="10"]
+            {
+                min-width: 216px;
+                height: 216px;
+                font-size: 1.5em;
+            }
+            &[data-importance="9"]
+            {
+                min-width: 104px;
+                height: 104px;
+                font-size: 1.5em;
+            }
+            &[data-importance="8"]
+            {
+                min-width: 48px;
+                height: 48px;
+                font-size: 1.2em;
+            }
+            &[data-importance="7"]
+            {
+                min-width: 20px;
+                height: 20px;
+                font-size: 0.8em;
+            }
+        }
+	    display: inline-block;
+    }
+
+    #custom-tech {
+        text-align: center;
+        margin: 10px;
+        padding: 10px;
+        background: black;
+        border: 1px solid #5cbdf4; 
+        .rounded-corners(10px);
+
+        button {
+            background: black;
+            border-color: #5cbdf4; 
+            .rounded-corners(10px);
+            color: white;
+            padding: 12px;
+        }
+    }
+
+    .resultsContainer {
+        margin: 30px;
+    }
+
+    #compatibility {
+        margin: 10px;
+
+        .compatibility-rating
+        {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 10px;
+        }
+
+        .tech-compatibility-messages{
+            margin-left: 0;
+            li {
+                list-style: none;
+                margin-left: 0;
+
+                color: red;
+
+                [data-good="true"] {
+                    color: green;
+                }
+            }
+        }
+
+        p {
+            margin: 5px 0 5px 0;
+        }
+    }
+
+    #breakdown {
+		margin: 20px 10px 0 10px;
+
+        li {
+            list-style: none;
+        }
+
+        .tech-details {
+            float: left;
+            width: 385px;
+
+            .tech-name {
+                display: inline-block;
+                width: 180px;
+                text-align: right;
+            }
+
+            .experience-graph {
+                display: inline-block;
+                width: 200px;
+
+                .graph-value {
+                    border: 1px solid #5cbdf4;
+                    background: black;
+                    height: 10px;
+                    display: inline-block;
+
+                    &[data-graph-category='bad']
+                    {
+                        border-color: red;
+                    }
+                }
+            }
+        }
+
+        .tech-experience {
+            margin-left: 385px;
+        }
+    }
+}

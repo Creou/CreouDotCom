@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTTP headers on SOAP messages for Windows Phone 8</title>
+    <meta name="Date" content="2013-06-20T19:30:00Z" />
+    <meta name="PublishDate" content="2013-06-20T19:30:00Z" />
+    <meta name="Id" content="wp8-soap-http-headers" />
+    <meta name="Tags" content="wp8,soap,http" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+</head>
+<body>
+    <p>
+        I needed to add HTTP headers to a soap request from a Windows Phone 8 app recently 
+        and unfortunately the usual method for doing this with a SOAP proxy isn't
+        supported on Windows Phone.
+    </p>
+
+    <p class="PreviewEnd" />
+
+    <p>The typical way of doing this would be to override the GetWebRequest method in the generated proxy, 
+        which allows you to get hold of the underlying WebRequest object and do whatever you want with it.
+        Including adding your HTTP headers. Unfortunately, when you generate the proxies in a Windows 
+        Phone project the majority of the extensibility points aren't created. This leaves you unable to 
+        get to the classes inside the proxy, and manually implementing the proxy wasn't an ideal solution.
+    </p>
+
+    <p>Fortunately, there is another way. You can use the OutgoingMessageProperties on the current scope 
+        to add the headers.
+    </p>
+
+    <pre>using (OperationContextScope scope = new OperationContextScope(client.InnerChannel))
+{
+    var httpRequestProperty = new HttpRequestMessageProperty();
+    httpRequestProperty.Headers["HEADERKEY"] = "HEADERVALUE";
+
+    OperationContext.Current
+        .OutgoingMessageProperties[HttpRequestMessageProperty.Name]
+                                                = httpRequestProperty;
+
+    // Send your soap request here...
+}</pre>
+
+    <p>Simple huh.</p>
+
+    <p class="license">Unless otherwise specified all code in this post is made available under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. Copyright 2013 Simon P Stevens.</p>
+    <div class="clear"></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿@using CreouDotCom.ViewModels
+@{
+    ViewBag.Title = "Home";
+    ViewBag.MenuPage = CreouDotCom.ViewModels.MenuPage.Home;
+}
+
+@*<script type="text/javascript">
+    $(function () {
+        $(".keyMessageContent").click(function () {
+            $(".keyMessageContent").each(function () { $(this).addClass("hidden"); })
+            .delay(300).queue(function () {
+                $(".keyMessagesDetail").removeClass("hidden");
+                $(".keyMessageDetail").each(function () { $(this).removeClass("hidden"); });
+            });
+        });
+    });
+</script>*@
+
+<div class="content">
+    <ul id="keyMessages">
+        <li class="keyMessageContent projectSupport left top">
+            <h1>
+                Project support</h1>
+            <p>
+                Additional flexible manpower for your team in the final weeks before a big deadline.
+            </p>
+            <img src="@Url.Content("/content/man.png")" alt="Project support image"/>
+        </li>
+        <li class="keyMessageContent bespokeSoftware right top">
+            <h1>
+                Bespoke software</h1>
+            <p>
+                Written precisely to meet your needs with a full support service available. We design
+                and build to your exact specification.
+            </p>
+            <img src="@Url.Content("/content/blueprint.png")" alt="Bespoke software image"/>
+        </li>
+        <li class="keyMessageContent integrationServices left bottom">
+            <h1>
+                Integration services</h1>
+            <p>
+                Custom code to integrate your discrete business processes seamlessely together.
+            </p>
+            <img src="@Url.Content("/content/cog.png")" alt="Integration services image"/>
+        </li>
+        <li class="keyMessageContent bugHunting right bottom">
+            <h1>
+                Bug hunting</h1>
+            <p>
+                Expert help and guidance in fixing those critical hard to find bugs.
+                <br />
+                <br />
+                Memory leaks, concurrency issues, performance problems.
+            </p>
+            <img src="@Url.Content("/content/bug.png")" alt="Bug hunting image"/>
+        </li>
+    </ul>
+    <div class="clear"></div>
+
+    @*    <ul id="keyMessagesDetail" class="hidden">
+        <li class="keyMessageDetail projectSupport first hidden">
+            <h1>
+                Project support</h1>
+            <p>
+                The last few weeks at the end of a big project can be tough. Deadlines are looming
+                and everyone wants a peice of your teams time.
+            </p>
+            <p>
+                We can help you in this critical time by providing support when and where you need
+                it most.</p>
+        </li>
+        <li class="keyMessageDetail bespokeSoftware second hidden">
+            <h1>
+                Bespoke software</h1>
+            <p>
+                Need something unique? Something that stands out from the crowd or just software
+                that fits the existing contours of your business?
+            </p>
+            <p>
+                We can build software that meets your needs. We will work directly with you right
+                from the start to define a software package unique to you.</p>
+        </li>
+        <li class="keyMessageDetail integrationServices third hidden">
+            <h1>
+                Integration services</h1>
+            <p>
+                Most companies use a range of software packages in their business. The problem is
+                that very few of these software packages work together nicely out of the box.
+            </p>
+            <p>
+                We can help you provide the crucial plumbing work that can interconnect the software
+                you use and make it start working for you.</p>
+            <ul>
+                <li>Processing, converting and routing data exports and imports.</li>
+                <li>Standaridsed SOAP and REST based web services</li>
+            </ul>
+        </li>
+        <li class="keyMessageDetail bugHunting fourth hidden">
+            <h1>
+                Bug hunting</h1>
+            <p>
+                Have you ever experienced one of those bugs that seems to disappear when you look
+                directly at it? Or bugs that only show their ugly faces in production. Are you're
+                developers constantly saying "but it works fine on my machine"
+            </p>
+            <p>
+                We are experts in tracking and killing the toughest of software bugs.</p>
+            <ul>
+                <li>Memory leaks</li>
+                <li>Multithreaded issues, deadlocks, concurrancy problems</li>
+                <li>Interoperation failures</li>
+            </ul>
+        </li>
+    </ul>
+    <div style="clear: both;">
+    </div>*@
+</div>
+@section SideBar
+{
+    @{Html.RenderPartial("_Contact");}
+}

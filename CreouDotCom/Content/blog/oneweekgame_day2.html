@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>One Week Game - Day 2</title>
+    <meta name="Date" content="2012-02-21T21:30:00Z" />
+    <meta name="PublishDate" content="2012-02-21T21:30:00Z" />
+    <meta name="Id" content="oneweekgame-day2" />
+    <meta name="Tags" content="One week game" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+    <meta name="PreviewImage" content="oneweekgame-day2_files/preview.jpg" />
+</head>
+<body>
+    <p>
+        This is the day 2 update of my <a href="/blog/oneweekgame">one week game project</a>.
+    </p>
+    <p>
+        The main tasks for today were to get the movement behaviour working for blocks of
+        different shapes and sizes, and to start work on a level manager.
+    </p>
+    <p class="PreviewEnd" />
+    <p>
+        At first things started fairly well, I quickly had multiple blocks connected together
+        behaving as expected but then I hit a problem. When working on the initial collision
+        detection code I had overlooked a bug with the player overlapping the blocks slightly
+        during pushing. I had dismissed it as something that would be easy to resolve at
+        a later stage. It turns out however that this was much more of a problem than I
+        had initially realised. Because of the structure I had used in my collision detection
+        each phase was very dependant on the steps before, making the correction of the
+        overlap difficult. In the end I decided to completely re-write the collision algorithm
+        from scratch. At the time this seemed like a real set back, but after I had chance to
+        redesign the code I've been left with a much cleaner flow for the collision detection.
+    </p>
+    <div class="imageContainer">
+        <a href="oneweekgame-day2_files/screenshot1.jpg">
+            <img height="200" src="oneweekgame-day2_files/screenshot1.jpg" alt="Screen shot 1" /></a>
+    </div>
+    <p>
+        The second task for the day - the level loading - has gone smoothly. I'm now using
+        a simple text file to define each level which means I can construct different designs
+        and test the puzzles efficiently. Tomorrow I will need to continue with the level
+        manager to extend the support for combined blocks, add in the completion conditions
+        and start looking at level switch and selection.
+    </p>
+    <div class="centreContainer">
+        <pre class="fixedWidth">xxxxxxxxxxxxxxxxx
+x........x......x
+x........x...e..x
+x........x......x
+x........x......x
+x.s......x......x
+x......111.x....x
+x........1.x....x
+x........x......x
+x........x......x
+xxxxxxxxxxxxxxxxx</pre>
+    </div>
+    <div class="centreContainer">
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/EeRG8mnsZ8I?rel=0"
+            frameborder="0" allowfullscreen></iframe>
+    </div>
+</body>
+</html>

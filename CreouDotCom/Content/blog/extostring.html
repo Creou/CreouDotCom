@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Exception To String</title>
+    <meta name="Date" content="2012-02-05T13:00:00Z" />
+    <meta name="PublishDate" content="2012-02-05T13:00:00Z" />
+    <meta name="Id" content="extostring" />
+    <meta name="Tags" content="C#,.Net,Exception,Code Snippet" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+    <meta name="PreviewImage" content="" />
+</head>
+<body>
+    <p>
+        This is some code I find myself re-writing for nearly every project I do so I wanted
+        to keep a master copy of it somewhere for easy reuse.
+    </p>
+    <p>
+        It's nothing complex, it just takes an exception and converts it to a string.</p>
+    <p>
+        You might be thinking; why is this necessary, just call ToString()? Unfortunately
+        many of the classes that inherit from the base Exception class add extra properties
+        that provide additional information but fail to override the ToString() method to
+        include this extra data.</p>
+    <p class="PreviewEnd" />
+    <p class="note">
+        For example; the SmtpException. When provided with an error message the SmtpStatusCode
+        is not displayed in the ToString() output.</p>
+    <p>
+        What this extension method does is output every bit of data it can find starting
+        with the .Data dictionary and then using reflection to pick up any other properties
+        that might be useful. It also explores any inner exceptions to give you a full output
+        of the problem.
+    </p>
+    <pre>System.Exception
+
+ Message: Something went wrong
+
+ TargetSite: Void SendMail()
+ HelpLink:
+ Source: ConsoleApplication1
+
+ Stack:
+ [
+   at ConsoleApplication1.Program.SendMail() in c:\...
+   at ConsoleApplication1.Program.Main(String[] args) in c:\...
+ ]
+
+ Inner-0:
+ (
+    System.Net.Mail.SmtpException
+
+     Message: message
+
+     StatusCode: ExceededStorageAllocation
+     TargetSite: Void InternalMethod()
+     HelpLink:
+     Source: ConsoleApplication1
+
+     Stack:
+     [
+       at ConsoleApplication1.Program.InternalMethod() in c:\...
+       at ConsoleApplication1.Program.SendMail() in c:\...
+     ]
+ )
+</pre>
+    <p>
+        I typically use this extension when I want to log an exception. This way I have
+        the maximum possible information when it comes to debugging the problem later. The full code is below and on <a href="https://github.com/SimonPStevens/ExToString">Github</a>.</p>
+    <pre>    public static class ExceptionToString
+    {
+        public static String ToFullExceptionString(this Exception exception)
+        {
+            return exception.ToFullExceptionString(0);
+        }
+
+        private static String ToFullExceptionString(this Exception exception, int innerDepthCount)
+        {
+            try
+            {
+                if (exception == null)
+                {
+                    return String.Empty;
+                }
+
+                var indent = innerDepthCount > 0 ? new String(' ', 4 * innerDepthCount) : String.Empty;
+
+                // Type and message
+                StringBuilder exceptionMessage = new StringBuilder();
+                exceptionMessage.Append(indent);
+                exceptionMessage.AppendLine(exception.GetType().FullName);
+                exceptionMessage.AppendLine();
+                exceptionMessage.Append(indent);
+                exceptionMessage.Append(" Message: ");
+                exceptionMessage.Append(exception.Message);
+
+                // Reflected properties
+                var exType = exception.GetType();
+                var properties = exType.GetProperties();
+                List<String> handled = new List<string>(new String[] { "Data", "InnerException", "Message", "StackTrace" });
+                var propertiesToDisplay = properties.Where(prop => !handled.Contains(prop.Name));
+                if (propertiesToDisplay.Count() > 0)
+                {
+                    exceptionMessage.AppendLine();
+                    foreach (var property in propertiesToDisplay)
+                    {
+                        var value = property.GetValue(exception, null);
+                        exceptionMessage.AppendFormat("\n{2} {0}: {1}", property.Name, value, indent);
+                    }
+                }
+                
+                // Data
+                String exDataString = null;
+                if (exception.Data != null && exception.Data.Count > 0)
+                {
+                    var exData = new StringBuilder();
+                    bool first = true;
+                    foreach (DictionaryEntry keyPair in exception.Data)
+                    {
+                        if (first) { exData.AppendLine(); }
+                        exData.Append(String.Format("{2}    {0} - {1}", keyPair.Key, keyPair.Value, indent));
+                    }
+                    exDataString = exData.ToString();
+
+                    exceptionMessage.AppendFormat("\n\n{1} Data: {0}", exDataString, indent);
+                }
+
+                // Stack trace
+                var tabbedStackTrace = exception.StackTrace != null
+                           ? ((innerDepthCount > 0)
+                                ? exception.StackTrace.Replace(Environment.NewLine, Environment.NewLine + indent)
+                                : exception.StackTrace)
+                           : null;
+
+                if (!String.IsNullOrEmpty(tabbedStackTrace))
+                {
+                    exceptionMessage.AppendFormat("\n\n{1} Stack:\n{1} [{0}\n{1} ]", tabbedStackTrace, indent);
+                }
+
+                // Inner exception
+                if (exception.InnerException != null)
+                {
+                    String innerExceptionString = exception.InnerException.ToFullExceptionString(innerDepthCount + 1);
+
+                    exceptionMessage.AppendFormat("\n\n{2} Inner-{0}:\n{2} (\n{1}\n{2} )", innerDepthCount, innerExceptionString, indent);
+                }
+
+                return exceptionMessage.ToString();
+            }
+            // This method will be used in exception handling and must not error.
+            catch (Exception ex)
+            {
+                return "UNABLE TO GET FULL EXCEPTION OUTPUT.\n\nDefault output:\n" + ex.ToString();
+            }
+        }
+    }</pre>
+</body>
+</html>

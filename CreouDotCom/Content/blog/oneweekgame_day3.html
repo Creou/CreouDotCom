@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>One Week Game - Day 3</title>
+    <meta name="Date" content="2012-02-22T22:30:00Z" />
+    <meta name="PublishDate" content="2012-02-22T22:30:00Z" />
+    <meta name="Id" content="oneweekgame-day3" />
+    <meta name="Tags" content="One week game" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+    <meta name="PreviewImage" content="oneweekgame-day3_files/preview.jpg" />
+</head>
+<body>
+    <p>
+        This is the day 3 update of my <a href="/blog/oneweekgame">one week game project</a>.
+    </p>
+    <p>
+        Today started with work on the level select menu. This might seem very simple, but
+        in order to correctly allow selection of the locked and unlocked levels I also had
+        to write the saving and loading system to keep track of player progress. The level
+        selection menu will automatically display all the available levels and each time
+        a level is completed the next one is unlocked. As part of the level tracking I've
+        now also implemented the level completion code.
+    </p>
+    <p class="PreviewEnd" />
+    <div class="imageContainer">
+        <a href="oneweekgame-day3_files/screenshot1.jpg">
+            <img height="100" src="oneweekgame-day3_files/screenshot1.jpg" alt="Screen shot 1" /></a>
+    </div>
+    <p>
+        Once the level selection and tracking was complete I moved on to some improvements
+        to the block tiling system. Now the tile loader will detect when a large block is
+        composed of multiple small blocks and use appropriate tiles to make the connections
+        between blocks smooth. It might be a subtle change, but once I have some real artwork
+        in place this will make the blocks more defined and easier to see. You might also
+        notice that I've implemented a visual indicator for the level goal.
+    </p>
+    <div class="imageContainer">
+        <a href="oneweekgame-day3_files/screenshot2.jpg">
+            <img height="200" src="oneweekgame-day3_files/screenshot2.jpg" alt="Screen shot 2" /></a>
+        <a href="oneweekgame-day3_files/screenshot3_before.jpg">
+            <img height="200" src="oneweekgame-day3_files/screenshot3_before.jpg" alt="Screen shot 3 before" /></a>
+        <a href="oneweekgame-day3_files/screenshot3_after.jpg">
+            <img height="200" src="oneweekgame-day3_files/screenshot3_after.jpg" alt="Screen shot 3 after" /></a>
+    </div>
+    <p>
+        I've discovered a few bugs that have arisen in the movement behaviour, for example,
+        it's possible to catch the player on the side of a combined block and drag it along
+        sideways which would defeat the point of many of the puzzle possibilities. Tomorrow
+        I will start by resolving some of these handling issues and then perhaps it's time
+        to start designing some real levels.</p>
+</body>
+</html>
+
+

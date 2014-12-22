@@ -1,0 +1,42 @@
+﻿@model SimpleBlogger.Mvc.ViewModels.BlogIndexViewModel
+@{
+    ViewBag.Title = "Index";
+    ViewBag.MenuPage = CreouDotCom.ViewModels.MenuPage.Blog;
+}
+<div class="content">
+    <div class="contentHeader">
+        <h1>
+            Blog</h1>
+    </div>
+    <ul id="blogPreviewList">
+        @foreach (var item in Model.NewsModel.BlogPosts)
+        {
+            <li class="blogPreviewItem">
+                <h2>
+                    <a href="@item.InternalHttpPath">@item.Title</a></h2>
+                @if (item.PreviewImageAvailable)
+                {
+                    <img class="blogPreviewImage" src="@Url.Content(item.PreviewImageInternalPath)" alt="blog preview image" />
+                }
+                <div class="blogPreviewText">
+                    @Html.Raw(item.PostPreviewHtml)
+                </div>
+                <span>Tags:</span>
+                <ul class="blogTags">
+                    @foreach (var tag in item.Tags)
+                    {
+                        <li>@tag</li>
+                    }
+                </ul>
+                <div class="clear">
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+@*@section SideBar
+{
+    <p>
+        Tag Cloud</p>
+}
+*@

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>CSS rollover Button</title>
+    <meta name="Date" content="2012-02-08T20:00:00Z" />
+    <meta name="PublishDate" content="2012-02-08T20:00:00Z" />
+    <meta name="Id" content="cssrolloverButton" />
+    <meta name="Tags" content="HTML,CSS" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+</head>
+<body>
+    <p>
+        In this post I'm just going to demonstrate some simple html and css for a button
+        with a rollover effect and rounded corners. You can find samples like this all over
+        the internet, but this is the standard way I like to do it, and I know it works
+        nicely with all the browsers.
+    </p>
+    <p class="PreviewEnd" />
+    <p>
+        Start with some simple HTML. Your anchor tag around the outside to cover the whole
+        button, and you're going to need three spans inside it to style the three separate
+        parts of the button (the left end, the middle bit and the right end).
+    </p>
+    <pre>   &lt;a href="http://creou.com" class="rolloverButton cIconButton"&gt;
+        &lt;span class="left"&gt;&lt;/span&gt;
+        &lt;span class="mid"&gt;Button Text&lt;/span&gt;
+        &lt;span class="right"&gt;&lt;/span&gt;
+    &lt;/a&gt;</pre>
+    <p>
+        You'll notice I've used two classes, one to define that this is a hover button,
+        and the second to define the specific type of logo we are going to use on the button.</p>
+    <p>
+        Next you need some CSS. First we need define the button size. We need a fixed height,
+        but we leave the width variable. We use a line-height on the span to keep the text
+        vertically centred. You can specify margins that suit you.</p>
+    <pre>   .rolloverButton
+    {   
+        margin: 5px;
+        height: 23px;
+        display: block;
+    }
+    .rolloverButton span
+    {
+        float: left;
+        height: 23px;
+        line-height: 23px;
+    }</pre>
+    <p>
+        Next we can use the second CSS class to provide the background image.</p>
+    <pre>   .arrowButton span
+    {
+        background: transparent url('linkbutton-combined.png') no-repeat scroll;
+        color: white;
+    }</pre>
+    <p>
+        Your image should be composed of your two button states stacked horizontally like
+        this. The image must be exactly twice the height of your button and long enough
+        to cope with the longest possible content you are going to want to use. If you want
+        to take advantage of the transparency on the corners it will need to be a png file.</p>
+    <div class="imageContainer noBorder">
+        <img src="cssrolloverButton_files/example.png" alt="Example button image" />
+    </div>
+    <p>
+        Now we just need to position the image on each of the spans so the correct part
+        is shown. The padding sizes specified here should match the width of the corner
+        part of your button image. The padding ensures that the three spans are spaced correctly
+        and do no overlap.</p>
+    <pre>   .rolloverButton .left
+    {
+        padding-left: 21px;
+        background-position:  left top;
+    }
+    .rolloverButton .mid
+    {
+        background-position: -21px 0px;
+    }
+    .rolloverButton .right
+    {
+        padding-left: 21px;
+        background-position:  right top;
+    }</pre>
+    <p>
+        Finally we need to adjust the image location when the user hovers over the button.</p>
+    <pre>   .rolloverButton:hover .left
+    {
+        background-position: left bottom;
+    }
+    .rolloverButton:hover .mid
+    {
+        background-position: -21px bottom;
+    }
+    .rolloverButton:hover .right
+    {
+        background-position: right bottom;
+    }</pre>
+    <p>
+        And there you have it, a flexible width rollover button that works in IE, Chrome
+        and Firefox. (Remember if your targeting IE6, it doesn't support transparent PNGs,
+        so you'll need to make sure your image background matches the background you place
+        the button on.)
+    </p>
+    <a href="http://creou.com" class="rolloverButton arrowButton"><span class="left"></span>
+        <span class="mid">Button Text</span> <span class="right"></span></a>
+</body>
+</html>

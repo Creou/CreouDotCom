@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>One Week Game - Day 4</title>
+    <meta name="Date" content="2012-02-23T20:00:00Z" />
+    <meta name="PublishDate" content="2012-02-23T20:00:00Z" />
+    <meta name="Id" content="oneweekgame-day4" />
+    <meta name="Tags" content="One week game" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+    <meta name="PreviewImage" content="oneweekgame-day4_files/preview.jpg" />
+</head>
+<body>
+    <p>
+        This is the day 4 update of my <a href="/blog/oneweekgame">one week game project</a>.
+        Over half way through now. I've made good progress but there's a lot left to
+        do.
+    </p>
+    <p>
+        The first thing to announce is that I now have a name, thanks to Sara the game will
+        be called "Boxed In".</p>
+    <p class="PreviewEnd" />
+    <p>
+        As I mentioned yesterday, my first job this morning was to fix the pushing movement
+        bugs that allowed the player to push composite blocks sideways. This was achieved
+        by restricting collisions to only the exposed edges of blocks rather than along
+        all sides.
+    </p>
+    <p>
+        Once the bugs were out the way I spent some time improving the level loader to allow
+        multiple composite blocks to be defined, along with different textures. Next I increased
+        the size of the level to allow for a extra space all the way around the border.
+        This is to allow the entrance and exit corridors which can be seen in the level screen
+        shots.
+    </p>
+    <div class="imageContainer">
+        <a href="oneweekgame-day4_files/screenshot1.jpg">
+            <img height="200" src="oneweekgame-day4_files/screenshot1.jpg" alt="Screen shot 1" /></a>
+        <a href="oneweekgame-day4_files/screenshot2.jpg">
+            <img height="200" src="oneweekgame-day4_files/screenshot2.jpg" alt="Screen shot 2" /></a>
+        <a href="oneweekgame-day4_files/screenshot3.jpg">
+            <img height="200" src="oneweekgame-day4_files/screenshot3.jpg" alt="Screen shot 3" /></a>
+        <a href="oneweekgame-day4_files/screenshot4.jpg">
+            <img height="200" src="oneweekgame-day4_files/screenshot4.jpg" alt="Screen shot 4" /></a>
+    </div>
+    <p>
+        Most of the afternoon was spent creating the menus and scene switching code. The
+        complete flow of the game is now implemented. I've created a main menu, a pause
+        menu with restart and resume options, and a level complete menu with a next and
+        quit option.
+    </p>
+    <p>
+        I thought that today I'd end with a video of the game running on the actual hardware.</p>
+    <div class="centreContainer">
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/MXRxGENlXtA?rel=0"
+            frameborder="0" allowfullscreen></iframe>
+    </div>
+</body>
+</html>

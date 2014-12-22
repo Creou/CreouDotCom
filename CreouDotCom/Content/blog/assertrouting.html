@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Assert Routing</title>
+    <meta name="Date" content="2012-02-14T18:00:00Z" />
+    <meta name="PublishDateX" content="2012-02-08T20:00:00Z" />
+    <meta name="Id" content="assertrouting" />
+    <meta name="Tags" content="C#,.Net,Assert,Code Snippet" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+    <meta name="PreviewImage" content="" />
+</head>
+<body>
+    <p>
+        If you make regular use of Asserts and also write unit tests you might have encountered
+        a little problem. If your assert gets triggered during a unit test run the assert
+        dialog box is displayed and your test hangs.
+    </p>
+    <p>
+        You could of course just only run your unit tests against release builds so your
+        asserts are compiled out, but this doesn't cover the case when you are writing the
+        unit test and repeatedly having to dismiss assert dialogs quickly becomes annoying.
+        Or trying to encourage your developers to run unit tests before making a checkin.</p>
+    <p class="PreviewEnd" />
+    <p class="note">
+        I also think it's good practise to run your unit tests against your debug build,
+        especially during the early stages of a project when you are likely to be giving
+        debug builds to QA.</p>
+    <p>
+        This little library provides two features.</p>
+    <ul>
+        <li>1. It allows you to disable the assert UI so any asserts that are triggered are
+            just ignored.</li>
+        <li>2. It allows you to automatically have asserts converted to exceptions so you can
+            have your test fail if any asserts are triggered.</li>
+    </ul>
+    <p>
+        Both features can enabled either with a static method call in your test classes
+        initialize/cleanup methods, or by wrapping a lambda around the specific lines of
+        code that you want to re-route the asserts for.
+    </p>
+    <p>
+        This is my typical setup. Within a test class I disable the UI and convert asserts
+        to exceptions. This prevents any hangs caused by asserts, and converts them to exceptions
+        so the test will fail and you'll get notified of the problem.
+    </p>
+    <pre>    private static AssertRouter _globalAssertRouter;
+
+    [ClassInitialize()]
+    public static void MyClassInitialize(TestContext testContext)
+    {
+        _globalAssertRouter = new AssertRouter(AssertUIBehaviour.DisableUIAndThrowExceptions);
+    }
+
+    [ClassCleanup()]
+    public static void MyClassCleanup()
+    {
+        _globalAssertRouter.Dispose();
+    }</pre>
+    <p>
+        Then within any specific test that I want to permit to trigger an assert:</p>
+    <pre>   AssertRouter.Reroute(AssertUIBehaviour.DisableUI, () =>
+    {
+        // Code that triggers an assert.
+    });</pre>
+    <p>You can find the code on GitHub:</p>
+    <ul><li><a href="https://github.com/SimonPStevens/AssertRouting">Assert Routing Library</a></li></ul>
+</body>
+</html>

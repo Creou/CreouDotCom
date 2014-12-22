@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>IE 9 Gradients with rounded corners</title>
+    <meta name="Date" content="2012-02-11T12:00:00Z" />
+    <meta name="PublishDate" content="2012-02-11T12:00:00Z" />
+    <meta name="Id" content="ie9roundedgradient" />
+    <meta name="Tags" content="HTML,CSS" />
+    <meta name="Zones" content="blog" />
+    <meta name="NamedFeeds" content="" />
+</head>
+<body>
+    <p>
+        You might have noticed that if you set a background gradient on something and give
+        it rounded corners, IE9 totally ignores your rounded corners and draws an ugly square
+        cornered gradient. Try looking at this example in IE9.
+    </p>
+<style type="text/css">
+        .mask
+        {
+            overflow: hidden;
+        }
+        
+        .roundedCorners
+        {
+            border-radius: 40px;
+            height: 100px;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .gradient
+        {            
+            background: #00f9bf; /* Old browsers */
+            background: -moz-linear-gradient(top,  #00f9bf 0%, #2e00ff 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00f9bf), color-stop(100%,#2e00ff)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  #00f9bf 0%,#2e00ff 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  #00f9bf 0%,#2e00ff 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  #00f9bf 0%,#2e00ff 100%); /* IE10+ */
+            background: linear-gradient(top,  #00f9bf 0%,#2e00ff 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f9bf', endColorstr='#2e00ff',GradientType=0 ); /* IE6-9 */
+        }        
+    </style>
+        <div class="roundedCorners gradient">
+        </div>
+    <p class="PreviewEnd" />
+    <p>
+        To fix the problem simply place your gradiented content within an outer element
+        with the same rounded corners and it's overflow set to hidden to mask off the corners.
+    </p>
+    <p>
+        HTML:</p>
+    <pre>    &lt;div class="mask roundedCorners"&gt;
+        &lt;div class="roundedCorners gradient"&gt;
+            Content
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+    <p>
+        CSS:</p>
+    <pre>    .mask
+    {
+        overflow: hidden;
+    }
+        
+    .roundedCorners
+    {
+        border-radius: 5px;
+    }
+
+    .gradient
+    {
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0065a4', endColorstr='#a0cf67',GradientType=0 ); /* IE6-9 */
+    }</pre>
+    <p>This example should appear with rounded corners even on IE9. If your using any older version of IE I'm afraid your out of luck, it's square corners all the way.</p>
+    <div class="mask roundedCorners">
+        <div class="roundedCorners gradient">
+        </div>
+    </div>
+    <p>
+        (You can use this <a href="http://www.colorzilla.com/gradient-editor/">gradient editor</a>
+        to generate cross browser gradient CSS.)</p>
+</body>
+</html>

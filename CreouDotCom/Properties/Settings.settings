@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CreouDotCom.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ContactEmailAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">software@creou.com</Value>
+    </Setting>
+    <Setting Name="ConfirmationFromEmailAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">software@creou.com</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
