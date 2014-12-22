@@ -1,4 +1,4 @@
-CODE:
+#### CODE ####
 
     The MIT License (MIT)
 
@@ -22,11 +22,15 @@ CODE:
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 
-CONTENT:
+#### CONTENT ####
 
-Unless otherwise specified all website content in is made available under the MIT license. Copyright 2014 Creou Limited. If a website post states a specific license or all or part of it's content that license takes precedence over this statement.
+Unless otherwise specified all website content in is made available under the MIT license. Copyright 2014 Creou Limited. If a website post states a specific license for all or part of it's content that license takes precedence over this statement.
 
-FONTS:
+#### NAME ####
+
+Creou Limited retains ownership of the Creou name and logo. 
+
+#### FONTS ####
 
 Copyright of fonts are maintained by their authors.
 
