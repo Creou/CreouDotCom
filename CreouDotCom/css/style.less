@@ -1,4 +1,6 @@
-﻿@font-face
+﻿@creou-colour: #5cbdf4;
+
+@font-face
 {
     font-family: 'CreouFont';
     src: url('/fonts/squaretypeb-cg-webfont.eot');
@@ -163,22 +165,47 @@ ul li ul
 #header
 {
     padding: 10px;
-    height: 300px;
     overflow: hidden;
-    
-    background: url('/content/header-chrome.jpg');
-    background-repeat: no-repeat;
-    background-position: top right;    
+
+    border-bottom: 5px solid @creou-colour;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
-#headerBranding
+#header #headerBranding
 {
-    background: url('/content/CreouTextLogo_Black.png');
+    background: url('/content/CreouTextLogo_xs.png');
     background-repeat: no-repeat;
-    height: 109px;
-    width: 300px;
-    margin: 120px 0px 0px 0px;
+    width: 100px;
+    height: 36px;
     float: left;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+@screen-sm-min:              768px;
+@screen-md-min:              992px;
+@screen-lg-min:              1200px;
+
+@media (min-width: @screen-sm-min)
+{
+    #header
+    {
+        background: url('/content/header-chrome.jpg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        height: 300px;
+        border-bottom: none;
+
+        #headerBranding
+        {
+            background: url('/content/CreouTextLogo_Black_Fade.png');
+            width: 375px;
+            height: 184px;
+            margin: 80px 0px 0px 0px;
+        }
+    }
 }
 
 #headerBranding h1
@@ -524,6 +551,7 @@ input.pressableButton:hover
     max-width: 250px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 
     padding: 10px;
 

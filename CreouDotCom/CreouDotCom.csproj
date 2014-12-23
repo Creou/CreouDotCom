@@ -289,10 +289,6 @@
     <Content Include="content\blog\oneweekgame_files\title.jpg" />
     <Content Include="content\blog\python-cheat-sheet_files\PythonGuide.png" />
     <Content Include="content\blueprint.png" />
-    <Content Include="content\bootstrap-theme.css" />
-    <Content Include="content\bootstrap-theme.min.css" />
-    <Content Include="content\bootstrap.css" />
-    <Content Include="content\bootstrap.min.css" />
     <Content Include="content\bug.png" />
     <Content Include="content\cog.png" />
     <Content Include="content\contact\CodeProjectLogo.png" />
@@ -316,6 +312,8 @@
     <Content Include="content\contact\XNAUKLogo.png" />
     <Content Include="content\contact\XNAUKLogoSmall.png" />
     <Content Include="content\CreouTextLogo_Black.png" />
+    <Content Include="content\CreouTextLogo_Black_Fade.png" />
+    <Content Include="content\CreouTextLogo_xs.png" />
     <Content Include="content\data1.png" />
     <Content Include="content\data2.png" />
     <Content Include="content\data3.png" />
@@ -374,8 +372,11 @@
     <Content Include="content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="content\trans_pixel_b.png" />
     <Content Include="content\trans_pixel_w.png" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="css\reset.css" />
-    <Content Include="content\CreouTextLogo.png" />
     <Content Include="content\themes\base\jquery.ui.accordion.css" />
     <Content Include="content\themes\base\jquery.ui.all.css" />
     <Content Include="content\themes\base\jquery.ui.autocomplete.css" />
@@ -389,7 +390,9 @@
     <Content Include="content\themes\base\jquery.ui.slider.css" />
     <Content Include="content\themes\base\jquery.ui.tabs.css" />
     <Content Include="content\themes\base\jquery.ui.theme.css" />
-    <Content Include="css\style.css" />
+    <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="css\bootstrap.css.map" />
+    <None Include="css\style.less" />
     <Content Include="css\tech-match.less" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -398,8 +401,6 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="content\bootstrap-theme.css.map" />
-    <Content Include="content\bootstrap.css.map" />
     <None Include="scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="scripts\jquery-2.1.1.js" />
     <Content Include="scripts\jquery-2.1.1.min.js" />
