@@ -19,28 +19,40 @@ namespace CreouDotCom.Email
 
         public bool SendEmail(string to, string from, string subject, string body, out string errorMessage)
         {
-            string doNotReplyAddress = WebConfigurationManager.AppSettings["DoNotReplyAddress"].ToString();
-            string sendGridUserName = WebConfigurationManager.AppSettings["SendGridUserName"].ToString();
-            string sendGridPassword = WebConfigurationManager.AppSettings["SendGridPassword"].ToString();
-            try
+            string sendGridUserName = (string)WebConfigurationManager.AppSettings["SendGridUserName"];
+            string sendGridPassword = (string)WebConfigurationManager.AppSettings["SendGridPassword"];
+            
+            if (string.IsNullOrEmpty(sendGridUserName) || string.IsNullOrEmpty(sendGridPassword))
             {
-                if (string.IsNullOrWhiteSpace(from)) from = doNotReplyAddress;
-                if (string.IsNullOrWhiteSpace(from)) 
-                {
-                    errorMessage = "Sender address required";
-                    return false;
-                };
-                var message = new SendGridMessage(new MailAddress(from), new MailAddress[]{new MailAddress(to)}, subject, null, body);
-                var credentials = new NetworkCredential(sendGridUserName, sendGridPassword);
-                var transport = new Web(credentials);
-                transport.Deliver(message);
+#if DEBUG
+                errorMessage = "Email provider details missing.";
+#else
                 errorMessage = string.Empty;
-                return true;
-            }
-            catch (Exception e)
-            {
-                errorMessage = e.Message;
+#endif
+
                 return false;
+            }
+            else
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(from))
+                    {
+                        errorMessage = "Sender address required";
+                        return false;
+                    };
+                    var message = new SendGridMessage(new MailAddress(from), new MailAddress[] { new MailAddress(to) }, subject, null, body);
+                    var credentials = new NetworkCredential(sendGridUserName, sendGridPassword);
+                    var transport = new Web(credentials);
+                    transport.Deliver(message);
+                    errorMessage = string.Empty;
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    errorMessage = e.Message;
+                    return false;
+                }
             }
         }
     }
