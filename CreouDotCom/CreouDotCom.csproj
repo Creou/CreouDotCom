@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -223,7 +222,6 @@
     <Content Include="content\blog\oneweekgame_day6.html" />
     <Content Include="content\blog\cssrolloverbutton.html" />
     <Content Include="content\blog\cssrolloverbutton_files\example.png" />
-    <Content Include="content\blog\cssrolloverbutton_files\ExampleButtonVector.svg" />
     <Content Include="content\blog\extostring.html" />
     <Content Include="content\blog\globalgamesjam.html" />
     <Content Include="content\blog\globalgamesjam_files\AnotherSample.jpg" />
@@ -247,7 +245,6 @@
     <Content Include="content\blog\globalgamesjam_files\WithLights.jpg" />
     <Content Include="content\blog\ie9roundedgradient.html" />
     <Content Include="content\blog\ie9roundedgradient_files\example.png" />
-    <Content Include="content\blog\ie9roundedgradient_files\ExampleButtonVector.svg" />
     <Content Include="content\blog\nokialumia800.html" />
     <Content Include="content\blog\nokialumia800_Files\cimg2773.JPG" />
     <Content Include="content\blog\nokialumia800_Files\cimg2776.JPG" />
@@ -271,7 +268,6 @@
     <Content Include="content\blog\oneweekgame-day3_files\screenshot2.jpg" />
     <Content Include="content\blog\oneweekgame-day3_files\screenshot3_after.jpg" />
     <Content Include="content\blog\oneweekgame-day3_files\screenshot3_before.jpg" />
-    <Content Include="content\blog\oneweekgame-day4_files\demo1.wmv" />
     <Content Include="content\blog\oneweekgame-day4_files\preview.jpg" />
     <Content Include="content\blog\oneweekgame-day4_files\screenshot1.jpg" />
     <Content Include="content\blog\oneweekgame-day4_files\screenshot2.jpg" />
@@ -316,7 +312,6 @@
     <Content Include="content\contact\XNAUKLogo.png" />
     <Content Include="content\contact\XNAUKLogoSmall.png" />
     <Content Include="content\CreouTextLogo_Black.png" />
-    <Content Include="content\cv\Overview.png" />
     <Content Include="content\data1.png" />
     <Content Include="content\data2.png" />
     <Content Include="content\data3.png" />
@@ -416,8 +411,12 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\..\CreouDotCom-Private\Web.Debug.config" />
-    <Content Include="..\..\CreouDotCom-Private\Web.Release.config" />
+    <Content Include="Web.Debug.config" >
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config" >
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -451,7 +450,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\cv\SimonPStevens-CV.pdf" />
     <Content Include="fonts\squaretypeb-cg-webfont.eot" />
     <Content Include="fonts\squaretypeb-cg-webfont.svg" />
     <Content Include="fonts\squaretypeb-cg-webfont.ttf" />
@@ -479,6 +477,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="content\cv\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

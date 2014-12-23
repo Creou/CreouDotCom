@@ -25,3 +25,7 @@ CreouDotCom.Publish.xml
 
 # Windows thumbnail cache files #
 Thumbs.db
+
+# Live config transformations #
+CreouDotCom/Web.Debug.config
+CreouDotCom/Web.Release.config
