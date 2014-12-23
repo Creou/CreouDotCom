@@ -289,6 +289,10 @@
     <Content Include="content\blog\oneweekgame_files\title.jpg" />
     <Content Include="content\blog\python-cheat-sheet_files\PythonGuide.png" />
     <Content Include="content\blueprint.png" />
+    <Content Include="content\bootstrap-theme.css" />
+    <Content Include="content\bootstrap-theme.min.css" />
+    <Content Include="content\bootstrap.css" />
+    <Content Include="content\bootstrap.min.css" />
     <Content Include="content\bug.png" />
     <Content Include="content\cog.png" />
     <Content Include="content\contact\CodeProjectLogo.png" />
@@ -390,8 +394,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="README.jQuery.vsdoc.txt" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="content\bootstrap-theme.css.map" />
+    <Content Include="content\bootstrap.css.map" />
     <None Include="scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="scripts\jquery-2.1.1.js" />
     <Content Include="scripts\jquery-2.1.1.min.js" />
@@ -404,6 +412,7 @@
     <Content Include="scripts\knockout-2.2.1.min.js" />
     <Content Include="scripts\modernizr-2.7.2.js" />
     <Content Include="scripts\modernizr-2.min.js" />
+    <Content Include="scripts\npm.js" />
     <Content Include="scripts\tech-match.js" />
     <Content Include="scripts\underscore.js" />
     <Content Include="scripts\underscore.min.js" />
@@ -411,10 +420,10 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config" >
+    <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Web.Release.config" >
+    <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
