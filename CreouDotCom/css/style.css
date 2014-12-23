@@ -37,8 +37,7 @@ html, body
     height: auto !important;
     height: 100%;
     width: auto;
-    min-width: 960px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto -197px; /* the bottom margin is the negative value of the footer's height */
     background: transparent;
 }
@@ -449,10 +448,14 @@ input.pressableButton:hover
     height: 167px; /* .push must be the same height as .footer */
 }
 
+.footer-spacer{
+    height: 20px;
+}
+
 #footer
 {
     padding: 10px 20px;
-    height: 147px;
+    height: 177px;
     margin-top: 20px;
     border-top: 10px solid #5cbdf4;
     background: url('/content/trans_pixel_b.png');
@@ -527,61 +530,22 @@ input.pressableButton:hover
     font-size: 10px;
 }
 
-/* Main content */
-#keyMessages
-{
-    width: 580px;
-    height: 692px;
-    margin: auto;
-    
-    font-size: 16px;   
-     
-    position: relative;
-    z-index: 1;
-}
-
-#keyMessages .keyMessageContent h1
-{
-    font-family: CreouFont, Tahoma, Geneva, sans-serif;
-    line-height: 35px;
-    font-size: 36px;
-    color: White;
-}
-
-#keyMessages .keyMessageContent p
-{
-    font-size: 16px;
-}
-
-#keyMessages .keyMessageContent img
+/* Key messages */
+.keyMessageContent img
 {
     display: block;
     margin: 20px auto;
     width: 100px;
 }
 
-#keyMessages li
-{
-    margin: 10px;
-    width: 250px;
-    /*height: 275px;*/
-    float: left;
-}
+.keyMessageContent
+{        
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
 
-#keyMessages li.right
-{
-    /*position: relative;
-    top: 50px;*/
-    margin-top: 50px;
-}
-
-#keyMessages .keyMessageContent
-{
-    position: relative;
-    display: block;
-    float: left;
     padding: 10px;
-        
+
     -webkit-backface-visibility: hidden;
     
     -webkit-border-radius: 10px;
@@ -595,7 +559,7 @@ input.pressableButton:hover
             transition: all 0.3s ease-in-out;       
 }
 
-#keyMessages .keyMessageContent:hover
+.keyMessageContent:hover
 {   
     -webkit-box-shadow: 0 0 5px 5px #5cbdf4;
        -moz-box-shadow: 0 0 5px 5px #5cbdf4;
