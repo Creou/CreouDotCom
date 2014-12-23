@@ -66,42 +66,43 @@
                             Creative Software Solutions
                         </h2>
                     </div>
-                    @*<div id="nav">
-                            <ul>
-                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Home)
-                                {
-                                    <li class="active"><strong>Home</strong></li>
-                                }
-                                else
-                                {
-                                    <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
-                                }
-                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.CV)
-                                {
-                                    <li class="active"><strong>CV</strong></li>
-                                }
-                                else
-                                {
-                                    <li>@Html.ActionLink("Cv", MVC.Home.Cv())</li>
-                                }
-                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Contact)
-                                {
-                                    <li class="active"><strong>Contact</strong></li>
-                                }
-                                else
-                                {
-                                    <li>@Html.ActionLink("Contact", MVC.Contact.Contact())</li>
-                                }
-                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Blog)
-                                {
-                                    <li class="active"><strong>Blog</strong></li>
-                                }
-                                else
-                                {
-                                    <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
-                                }
-                            </ul>
-                        </div>*@
+                    <div id="nav" class="hidden-xs">
+                        <ul>
+                            @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Home)
+                            {
+                                <li class="active"><strong>Home</strong></li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+                            }
+                            @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.CV)
+                            {
+                                <li class="active"><strong>CV</strong></li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Cv", MVC.Home.Cv())</li>
+                            }
+                            @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Contact)
+                            {
+                                <li class="active"><strong>Contact</strong></li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Contact", MVC.Contact.Contact())</li>
+                            }
+                            @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Blog)
+                            {
+                                <li class="active"><strong>Blog</strong></li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
+                            }
+                        </ul>
+                    </div>
+
                 </div>
 
                 <div id="teaser">
