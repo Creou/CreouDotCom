@@ -441,28 +441,6 @@ input.pressableButton:hover
             transition: all 0.3s ease-in-out;
 }
 
-/* Footer */
-#push
-{
-    background: transparent;
-    height: 167px; /* .push must be the same height as .footer */
-}
-
-.footer-spacer{
-    height: 20px;
-}
-
-#footer
-{
-    padding: 10px 20px;
-    height: 177px;
-    margin-top: 20px;
-    border-top: 10px solid #5cbdf4;
-    background: url('/content/trans_pixel_b.png');
-    color: White;
-    min-width: 920px;
-}
-
 /* Contact details */
 .contactOnline
 {
@@ -485,31 +463,38 @@ input.pressableButton:hover
     margin: 10px 0 0 0;
 }
 
-#footer .margins
+/* Footer */
+#push
 {
-    min-width: 920px;
-    font-size: 12px;
+    background: transparent;
+    height: 167px; /* .push must be the same height as .footer */
 }
 
-#footer .footerUpper
-{
-    display: block;
-    margin: auto;
-    width: 600px;
+.footer-spacer{
+    height: 20px;
 }
+
+#footer
+{
+    padding: 10px 20px 0px 10px;
+    margin-top: 20px;
+    border-top: 10px solid #5cbdf4;
+    background: url('/content/trans_pixel_b.png');
+    color: White;
+}
+
+#footer .container-fluid {
+    max-width: 900px;
+}
+
 #footer .companyDetails .companyLogo
 {
     width: 150px;
     margin: 10px 0 10px 0;
 }
-#footer .contactDetails
-{
-    margin: 25px 0 0 0;
-}
+
 #footer .contactDetails h1
 {
-    display: block;
-    color: White;
     font-size: 16px;
 }
 
@@ -518,10 +503,6 @@ input.pressableButton:hover
     display: inline;
     float: left;
     width: 150px;
-}
-#footer .footerColumn1
-{
-    width: 300px;
 }
 
 #footer .footerLower
