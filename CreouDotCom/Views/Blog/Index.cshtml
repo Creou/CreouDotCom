@@ -4,39 +4,46 @@
     ViewBag.MenuPage = CreouDotCom.ViewModels.MenuPage.Blog;
 }
 <div class="content">
-    <div class="contentHeader">
-        <h1>
-            Blog</h1>
-    </div>
+
     <ul id="blogPreviewList">
         @foreach (var item in Model.NewsModel.BlogPosts)
         {
             <li class="blogPreviewItem">
-                <h2>
-                    <a href="@item.InternalHttpPath">@item.Title</a></h2>
-                @if (item.PreviewImageAvailable)
-                {
-                    <img class="blogPreviewImage" src="@Url.Content(item.PreviewImageInternalPath)" alt="blog preview image" />
-                }
-                <div class="blogPreviewText">
-                    @Html.Raw(item.PostPreviewHtml)
-                </div>
-                <span>Tags:</span>
-                <ul class="blogTags">
-                    @foreach (var tag in item.Tags)
-                    {
-                        <li>@tag</li>
-                    }
-                </ul>
-                <div class="clear">
+
+                <div class="formContainer">
+
+                    <div class="outerFormTitle">
+                        <div class="formTitle"><a href="@item.InternalHttpPath">@item.Title</a></div>
+                        <div class="clearLeft">
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                @Html.Raw(item.PostPreviewHtml)
+                            </div>
+                            <div class="col-sm-3">
+                                @if (item.PreviewImageAvailable)
+                                {
+                                    <img class="blogPreviewImage" src="@Url.Content(item.PreviewImageInternalPath)" alt="blog preview image" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <span>Tags:</span>
+                    <ul class="blogTags">
+                        @foreach (var tag in item.Tags)
+                        {
+                            <li>@tag</li>
+                        }
+                    </ul>
+
+                    <div class="clear">
+                    </div>
                 </div>
             </li>
         }
     </ul>
 </div>
-@*@section SideBar
-{
-    <p>
-        Tag Cloud</p>
-}
-*@
