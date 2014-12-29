@@ -23,10 +23,12 @@
 
     <link href="/content/themes/base/jquery.ui.tabs.css" rel="stylesheet" type="text/css" />
     <script src="/scripts/modernizr-2.min.js" type="text/javascript"></script>
-    <script src="/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-    <script src="/scripts/jquery-ui-1.10.2.min.js" type="text/javascript"></script>
+    <script src="/scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="/scripts/jquery-ui-1.10.4.min.js" type="text/javascript"></script>
     <script src="/scripts/jquery.validate.min.js" type="text/javascript"></script>
     <script src="/scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+
+    <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -52,6 +54,7 @@
     @RenderSection("Header", false)
 </head>
 <body>
+
     <div class="margins background">
         <div class="page">
             <div id="primaryContainer">
@@ -66,6 +69,54 @@
                             Creative Software Solutions
                         </h2>
                     </div>
+
+                    <nav class="navbar navbar-inverse visible-xs">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Home)
+                                {
+                                    <li class="active">@Html.ActionLink("Home", MVC.Home.Index())</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+                                }
+                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.CV)
+                                {
+                                    <li class="active">@Html.ActionLink("Cv", MVC.Home.Cv())</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Cv", MVC.Home.Cv())</li>
+                                }
+                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Contact)
+                                {
+                                    <li class="active">@Html.ActionLink("Contact", MVC.Contact.Contact())</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Contact", MVC.Contact.Contact())</li>
+                                }
+                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Blog)
+                                {
+                                    <li class="active">@Html.ActionLink("Blog", "Index", "Blog")</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
+                                }
+                            </ul>
+                        </div>
+                    </nav>
+
                     <div id="nav" class="hidden-xs">
                         <ul>
                             @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Home)
@@ -101,8 +152,8 @@
                                 <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
                             }
                         </ul>
-                    </div>
 
+                    </div>
                 </div>
 
                 <div id="teaser">

@@ -1,5 +1,9 @@
 ﻿@creou-colour: #5cbdf4;
 
+@screen-sm-min:              768px;
+@screen-md-min:              992px;
+@screen-lg-min:              1200px;
+
 @font-face
 {
     font-family: 'CreouFont';
@@ -170,6 +174,7 @@ ul li ul
     border-bottom: 5px solid @creou-colour;
     margin-left: -10px;
     margin-right: -10px;
+    margin-bottom: 10px;
 }
 
 #header #headerBranding
@@ -180,13 +185,6 @@ ul li ul
     height: 36px;
     float: left;
 }
-
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
-
-@screen-sm-min:              768px;
-@screen-md-min:              992px;
-@screen-lg-min:              1200px;
 
 @media (min-width: @screen-sm-min)
 {
@@ -224,6 +222,27 @@ ul li ul
 }
 
 /* Navigation */
+.navbar
+{
+    margin-bottom: 0px;
+}
+
+.navbar-inverse
+{
+    background: none;
+}
+
+.navbar-toggle
+{
+    margin: 0px;
+}
+
+.navbar-collapse
+{
+    border: 0px;
+    box-shadow: none;
+}
+
 #nav
 {
     position: relative;
