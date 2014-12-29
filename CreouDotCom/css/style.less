@@ -340,8 +340,16 @@ ul li ul
 .background
 {
     background: black url('/content/side-chrome.jpg');
-    background-position: right 310px;
+    background-position: -100px 310px;
     background-repeat: no-repeat;
+}
+
+@media (min-width: @screen-sm-min)
+{
+    .background
+    {
+        background-position: right 310px;
+    }
 }
 
 #main
