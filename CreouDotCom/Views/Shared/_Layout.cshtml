@@ -182,41 +182,40 @@
                 </div>
             </div>
         </div>
-        <div id="push">
-        </div>
         <div class="footer-spacer">
         </div>
-    </div>
-    <div id="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6 companyDetails">
-                    <img class="companyLogo" src="@Url.Content("/content/CreouTextLogo_Black.png")" alt="Creou Company Logo" />
-                    <p>
-                        Creou Software is a trading name of Creou Limited.
-                        <br />
-                        (Registered number 07615616)
-                    </p>
+
+        <div id="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6 companyDetails">
+                        <img class="companyLogo" src="@Url.Content("/content/CreouTextLogo_Black.png")" alt="Creou Company Logo" />
+                        <p>
+                            Creou Software is a trading name of Creou Limited.
+                            <br />
+                            (Registered number 07615616)
+                        </p>
+                    </div>
+                    <div class="col-sm-3 contactDetails">
+                        <h1>
+                            Address
+                        </h1>
+                        @Html.Partial("Address")
+                    </div>
+                    <div class="col-sm-3 contactDetails">
+                        <h1>
+                            Email
+                        </h1>
+                        @Html.Partial("Email")
+                        <h1>
+                            Tel
+                        </h1>
+                        @Html.Partial("Telephone")
+                    </div>
                 </div>
-                <div class="col-sm-3 contactDetails">
-                    <h1>
-                        Address
-                    </h1>
-                    @Html.Partial("Address")
+                <div class="footerLower">
+                    Font: Square Type B by <a href="http://digitalam.deviantart.com/art/squaretypeB-125986122">Digital AM</a>
                 </div>
-                <div class="col-sm-3 contactDetails">
-                    <h1>
-                        Email
-                    </h1>
-                    @Html.Partial("Email")
-                    <h1>
-                        Tel
-                    </h1>
-                    @Html.Partial("Telephone")
-                </div>
-            </div>
-            <div class="footerLower">
-                Font: Square Type B by <a href="http://digitalam.deviantart.com/art/squaretypeB-125986122">Digital AM</a>
             </div>
         </div>
     </div>
