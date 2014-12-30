@@ -89,13 +89,13 @@
                                 {
                                     <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
                                 }
-                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.CV)
+                                @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.About)
                                 {
-                                    <li class="active">@Html.ActionLink("Cv", MVC.Home.Cv())</li>
+                                    <li class="active">@Html.ActionLink("About", MVC.Home.About())</li>
                                 }
                                 else
                                 {
-                                    <li>@Html.ActionLink("Cv", MVC.Home.Cv())</li>
+                                    <li>@Html.ActionLink("About", MVC.Home.About())</li>
                                 }
                                 @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Contact)
                                 {
@@ -127,13 +127,13 @@
                             {
                                 <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
                             }
-                            @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.CV)
+                            @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.About)
                             {
-                                <li class="active"><strong>CV</strong></li>
+                                <li class="active"><strong>About</strong></li>
                             }
                             else
                             {
-                                <li>@Html.ActionLink("Cv", MVC.Home.Cv())</li>
+                                <li>@Html.ActionLink("About", MVC.Home.About())</li>
                             }
                             @if (ViewBag.MenuPage == CreouDotCom.ViewModels.MenuPage.Contact)
                             {

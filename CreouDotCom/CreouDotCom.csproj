@@ -419,6 +419,7 @@
     <Content Include="Views\Shared\Email.cshtml" />
     <Content Include="Views\Shared\Telephone.cshtml" />
     <Content Include="Views\Shared\Address.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

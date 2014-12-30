@@ -15,15 +15,9 @@ namespace CreouDotCom.Controllers
             return View();
         }
 
-        public virtual ActionResult Cv()
-        {
-            return View();
-        }
-
         public virtual ActionResult About()
         {
             return View();
         }
-
     }
 }

@@ -10,7 +10,7 @@ namespace CreouDotCom.ViewModels
         Other = -1,
         Home = 0,
         Contact = 1,
-        CV = 2,
+        About = 2,
         Blog = 3
     }
 

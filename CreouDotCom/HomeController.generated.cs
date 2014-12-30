@@ -74,7 +74,6 @@ namespace CreouDotCom.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Cv = "Cv";
             public readonly string About = "About";
         }
 
@@ -82,7 +81,6 @@ namespace CreouDotCom.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Cv = "Cv";
             public const string About = "About";
         }
 
@@ -97,9 +95,11 @@ namespace CreouDotCom.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string About = "About";
                 public readonly string Cv = "Cv";
                 public readonly string Index = "Index";
             }
+            public readonly string About = "~/Views/Home/About.cshtml";
             public readonly string Cv = "~/Views/Home/Cv.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
         }
@@ -118,17 +118,6 @@ namespace CreouDotCom.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CvOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Cv()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Cv);
-            CvOverride(callInfo);
             return callInfo;
         }
 

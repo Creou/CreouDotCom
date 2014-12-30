@@ -28,9 +28,16 @@ namespace CreouDotCom
             );
 
             routes.MapRoute(
+                "About", // Route name
+                "about", // URL with parameters
+                new { controller = "Home", action = "About" } // Parameter defaults
+            );
+
+            // Backup route for old CV page. Now redirects to the about page.
+            routes.MapRoute(
                 "Cv", // Route name
                 "cv", // URL with parameters
-                new { controller = "Home", action = "Cv" } // Parameter defaults
+                new { controller = "Home", action = "About" } // Parameter defaults
             );
 
             routes.MapRoute(
