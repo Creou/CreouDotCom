@@ -3,8 +3,8 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+#pragma warning disable 1591, 3008, 3009
 #region T4MVC
 
 using System;
@@ -39,16 +39,22 @@ namespace T4MVC
                 public readonly string _About = "_About";
                 public readonly string _Contact = "_Contact";
                 public readonly string _Layout = "_Layout";
+                public readonly string Address = "Address";
+                public readonly string Email = "Email";
                 public readonly string Error = "Error";
+                public readonly string Telephone = "Telephone";
             }
             public readonly string _About = "~/Views/Shared/_About.cshtml";
             public readonly string _Contact = "~/Views/Shared/_Contact.cshtml";
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
+            public readonly string Address = "~/Views/Shared/Address.cshtml";
+            public readonly string Email = "~/Views/Shared/Email.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
+            public readonly string Telephone = "~/Views/Shared/Telephone.cshtml";
         }
     }
 
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009
