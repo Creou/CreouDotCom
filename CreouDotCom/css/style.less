@@ -618,7 +618,7 @@ input.pressableButton:hover
             transition: all 0.3s ease-in-out;            
 }
 
-/* Cv styles */
+/* Profile styles */
 #employmentStatusMessage
 {
     height: 30px;
@@ -627,63 +627,12 @@ input.pressableButton:hover
     color: Green;
 }
 
-#cv h1.cvHeader 
-{
-    float: left
-}
-
-#cvImage
-{
-    margin: 0 10px 0 0;
-    float: left;
-    width: 50px;
-}
-
-/*#cv #employmentStatusMessage
-{
-    font-weight: bold;
-    
-    background: green;
- 
-    margin: 10px;   
-    padding: 20px;
-    
-    -webkit-border-radius: 10px;
-       -moz-border-radius: 10px;
-            border-radius: 10px;     
-}
-*/
-
-#cvLinks
-{
-    width: 420px;
-    height: 50px;
-    list-style: none;
-    margin: auto;   
-}
-
-#cvLinks li
-{
-    float: left;
-    margin: 10px;
-}
-
-#cvLinks li a
-{
-    color: White;
-}
-
-#cv #cvIntro
-{
-    
-}
-
-#cv #overviewImage
+#creou-profile-tabs #overviewImage
 {
     margin: 20px 0 20px 0;
 }
 
-#cv .cvSection
+#creou-profile-tabs .creou-profile-section
 {
     margin: 10px 0 10px 207px;
     padding: 20px;
@@ -695,29 +644,38 @@ input.pressableButton:hover
             border-radius: 10px 0px 0px 10px;    
             
     min-height: 315px;
+}
 
+.creou-profile .creou-profile-section
+{
     h1 
     {
-        margin-top: 0px;
+        margin: 0 10px 10px 10px
+    }
+
+    ul
+    {
+        margin-left: 0px;
+        padding: 10px;
     }
 }
 
-#cv ul.tabMenu
+#creou-profile-tabs ul.tabMenu
 {
     list-style: none;
     float: left
 }
-#cv ul.tabMenu.ui-tabs-nav
+#creou-profile-tabs ul.tabMenu.ui-tabs-nav
 {
     margin-top: 10px;
 }
 
-.fontface #cv ul.tabMenu li:first-letter
+.fontface #creou-profile-tabs ul.tabMenu li:first-letter
 {
     font-size: 1.4em;
 }
 
-#cv ul.tabMenu li
+#creou-profile-tabs ul.tabMenu li
 {
     font-family: CreouFont, Tahoma, Geneva, sans-serif;
     font-size: 26px;
@@ -744,13 +702,13 @@ input.pressableButton:hover
             transition: all 0.3s ease-in-out;   
 }
 
-#cv ul.tabMenu li a
+#creou-profile-tabs ul.tabMenu li a
 {
     padding: 10px;
     outline: none;
 }
 
-#cv ul.tabMenu li[aria-selected="true"]
+#creou-profile-tabs ul.tabMenu li[aria-selected="true"]
 {
     border: 1px solid red !important;
     background: white;
@@ -770,7 +728,7 @@ input.pressableButton:hover
             transition: all 0.3s ease-in-out;       
 }
 
-#cv ul.tabMenu.ui-tabs-nav li:hover
+#creou-profile-tabs ul.tabMenu.ui-tabs-nav li:hover
 {
     background: white;
     color: #5cbdf4;
@@ -786,19 +744,24 @@ input.pressableButton:hover
             transition: all 0.3s ease-in-out;    
 }
 
-#cv ul.tabMenu li a
+#creou-profile-tabs ul.tabMenu li a
 {
     float: none;
 }
 
+.project-header
+{
+    font-weight: bold;
+}
+
 /* Tech list */
-#cv ul.techList
+ul.techList
 {
     list-style-type: none;
     margin: 5px;
 }
 
-#cv ul.techList li
+ul.techList li
 {
     display: inline;
     border: 2px solid #5cbdf4;
@@ -810,7 +773,7 @@ input.pressableButton:hover
     line-height: 32px;   
 }
 
-#cv .techOverview
+#creou-profile-tabs .techOverview
 {
     float: left;
     margin: 10px 40px 10px 40px;

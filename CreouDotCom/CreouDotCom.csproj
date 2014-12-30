@@ -421,6 +421,9 @@
     <Content Include="Views\Shared\Address.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\_TheTeam.cshtml" />
+    <Content Include="Views\Home\_OpenSource.cshtml" />
+    <Content Include="Views\Home\_Community.cshtml" />
+    <Content Include="Views\Home\_Projects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

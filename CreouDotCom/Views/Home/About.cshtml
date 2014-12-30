@@ -92,8 +92,8 @@
         </div>
     </div>
 
-    <div id="cv" class="hidden-xs">
-        <div id="tabs" class="cvSectionContent">
+    <div id="creou-profile-tabs" class="creou-profile hidden-xs">
+        <div id="tabs" class="creou-profile-section-content">
             <ul class="tabMenu">
                 <li><a href="#tabs-TheTeam">The Team</a></li>
                 <li><a href="#tabs-OpenSource">Open Source</a></li>
@@ -101,32 +101,32 @@
                 <li><a href="#tabs-Projects">Projects</a></li>
             </ul>
 
-            <div id="tabs-TheTeam" class="cvSection">
+            <div id="tabs-TheTeam" class="creou-profile-section">
                 @{Html.RenderPartial("_TheTeam");}
             </div>
-            <div id="tabs-OpenSource" class="cvSection">
+            <div id="tabs-OpenSource" class="creou-profile-section">
                 @{Html.RenderPartial("_OpenSource");}
             </div>
-            <div id="tabs-Community" class="cvSection">
+            <div id="tabs-Community" class="creou-profile-section">
                 @{Html.RenderPartial("_Community");}
             </div>
-            <div id="tabs-Projects" class="cvSection">
+            <div id="tabs-Projects" class="creou-profile-section">
                 @{Html.RenderPartial("_Projects");}
             </div>
         </div>
     </div>
 
-    <div class="visible-xs">
-        <div>
+    <div class="creou-profile visible-xs">
+        <div class="creou-profile-section">
             @{Html.RenderPartial("_TheTeam");}
         </div>
-        <div>
+        <div class="creou-profile-section">
             @{Html.RenderPartial("_OpenSource");}
         </div>
-        <div>
+        <div class="creou-profile-section">
             @{Html.RenderPartial("_Community");}
         </div>
-        <div>
+        <div class="creou-profile-section">
             @{Html.RenderPartial("_Projects");}
         </div>
     </div>
