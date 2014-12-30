@@ -1,4 +1,138 @@
-﻿@{
+﻿@using CreouDotCom.ViewModels
+@model CreouDotCom.ViewModels.BaseViewModel
+@{
     ViewBag.Title = "About";
     ViewBag.MenuPage = CreouDotCom.ViewModels.MenuPage.About;
+}
+@section Header
+{
+    <link href="/css/tech-match.less" rel="stylesheet" type="text/css" />
+
+    <script src="/scripts/knockout-2.2.1.min.js" type="text/javascript"></script>
+    <script src="/scripts/underscore.min.js" type="text/javascript"></script>
+
+    <script src="/scripts/tech-match.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            techMatch.init($('#tech-match')[0],
+                [
+                    { name: 'C# .Net', ex: 9.5, good: true, im: 10, cm: 'With eight years of experience, I have been using C# and .Net since version 2.0 and have wide ranging knowledge of most parts of the framework.' },
+                    { name: 'Javascript', ex: 9, good: true, im: 9, cm: 'I am a strong JavaScript programmer with the ability to go far beyond simple jQuery usage. I understand the intricacies of prototypal inheritance.' },
+                    { name: 'HTML', ex: 9, good: true, im: 9, cm: 'Several years of experience with both HTML, XHTML including use of HTML5 semantic markup.' },
+                    { name: 'CSS', ex: 8, good: true, im: 9, cm: 'I\'m comfortable manually writing CSS in both static and flexible layouts. I am particularly excited by what CSS3 brings to the web toolkit.' },
+                    { name: 'Asp.Net MVC', ex: 8, good: true, im: 9, cm: 'Asp.Net MVC fits perfectly with the way I prefer to develop websites with strong focus on the markup. Although I have traditionally been a desktop apps developer, Asp.net MVC is the framework that opened me up to web development. Since first using it in 2011 I have completed several successful projects using it.' },
+
+                    { name: 'Entity Framework', ex: 8, good: true, im: 9, cm: 'I\'ve made regular use of Entity framework since version 1. My preference is for use the code first approach, but I am equally comfortable with the model and database first forms.' },
+                    { name: 'NHibernate', ex: 5, good: true, im: 8, cm: 'I have worked on projects using NHibernate in the past, and while I\'m not intimately familiar with it I am confident that it is something I could adapt to quickly.' },
+                    { name: 'Sql Server', ex: 7, good: true, im: 8, cm: 'While I\'m certainly no DBA, I am relatively confident with the use of SQL sever for storage and querying' },
+                    { name: 'Oracle', ex: 2, good: true, im: 8, cm: 'Work on a past project that supported multiple database backends has left me with a passing knowledge of oracle databases.' },
+
+                    { name: 'jQuery', ex: 8, good: true, im: 8, cm: 'jQuery is indispensible on the web. While I do not consider myself dependant on it, jQuery has certainly become a key part of my development workflow' },
+                    { name: 'Modernizr', ex: 8, good: true, im: 8, cm: 'I find Modernizr Invaluable when working on projects that support legacy browsers.' },
+                    { name: 'Underscore.js', ex: 7, good: true, im: 8, cm: 'I find that underscore picks up where jQuery ends and provides the perfect accompaniment. I\'m especially a fan of underscores array manipulation functions.' },
+                    { name: 'Backbone.js', ex: 7, good: true, im: 8, cm: 'I\'m a huge fan of the Backbone.js framework for single page apps, but I generally prefer Knockout.js for regular websites.' },
+                    { name: 'Knockout.js', ex: 7, good: true, im: 8, cm: 'When it comes to adding complex functionality to regular websites Knockout.js is one of my favourite frameworks.' },
+                    { name: 'Handlebars.js', ex: 8, good: true, im: 8, cm: '' },
+                    { name: 'Backbone Marionette', ex: 7, good: true, im: 8, cm: '' },
+
+                    { name: 'Jurassic.Net', ex: 5, good: true, im: 7, cm: '' },
+
+                    { name: 'Git', ex: 8, good: true, im: 7, cm: 'I became a true git convert in 2012 when for the first time I joined a team using it internally. Using it for a major project really opened my eyes to the power of distributed source control. Given the choice I would never go back. I prefer to use the command line.' },
+                    { name: 'Subversion', ex: 8, good: true, im: 7, cm: 'Occasional subversion user. I\'m comfortable using it, but have only occasionally been required to configure it.' },
+                    { name: 'Tfs', ex: 8, good: true, im: 7, cm: 'Regular TFS user, rarely involved in the configuration however.' },
+
+                    { name: 'Winforms', ex: 8, good: true, im: 7, cm: 'Prior to WPF Winforms was my primary tool for application development. I am comfortable using it, however WPF will always take precedence for any new projects.' },
+                    { name: 'WPF', ex: 8, good: true, im: 7, cm: 'I initially discovered WPF when it was still known as Avalon. I have since worked on several large scale projects using WPF and it is my framework of choice for desktop based application development.' },
+                    { name: 'XNA / Monogame', ex: 8, good: true, im: 7, cm: 'My solo game project (Boxed In) was started in XNA, and ported to Monogame when Microsoft announced Windows 8 modern UI would not support XNA.' },
+                    { name: 'Silverlight', ex: 5, good: true, im: 7, cm: 'Thanks to my strong XAML knowledge via WPF, on several occasions I have found myself able to implement Silverlight web projects quickly and easily.' },
+                    { name: 'WCF', ex: 5, good: true, im: 7, cm: 'WCF is a tool to me. I make use of it when necessary.' },
+
+                    { name: 'Windows Phone 7/8', ex: 6, good: true, im: 7, cm: 'I\'ve done plenty of work on Windows Phone apps via XNA, and although I\'ve not specifically done much with the Windows Phone Silverlight framework, I\'m confident that my desktop XAML skills will make the transition smoothly.', plc: { message: 'I am particularly interested in doing Windows Phone 8 development, so this project is certainly interesting.', good: true } },
+                    { name: 'Windows 8 - Modern UI', ex: 5, good: true, im: 7, cm: '', plc: { message: 'Although I\'ve done little Windows 8 specifc work, it\'s something I\'m keen to get in to, so please get in touch to discuss this project.', good: true } },
+
+                    { name: 'Python', ex: 3, good: true, im: 7, cm: 'Over the past year I\'ve run two 6 week Python courses for students at a local school. Although my Python experience is fairly limited, it is something that I think I could easily adapt to if required.' },
+
+                    { name: 'Asp.Net Webforms', ex: 1, good: false, im: 7, cm: 'I prefer to avoid Webforms whenever possible. It does not fit well with my development practises. I will occasionally take on projects that involve a small amount of legacy Webforms, but I will generally not undertake new projects using this technology.' },
+                    { name: 'Sharepoint', ex: 2, good: false, im: 7, cm: 'Although I do have some limited Sharepoint experience it is not a technology that I enjoy working with, so prefer to avoid it.', plc: { message: 'I prefer not to take on projects that have a large Sharepoint component.', good: false } },
+                    { name: 'VB6', ex: 7, good: false, im: 7, cm: 'Although I have plenty of VB6 experience, it is an old technology that I would prefer not to work with again.', plc: { message: 'I prefer not to take on projects that have a large VB6 component.', good: false } },
+                ],
+                [
+                    { min: 90, colour: 'green', message: 'I\'m a fantastic match for this project. I have plenty of experience in all of the technologies involved.' },
+                    { min: 70, colour: 'green', message: 'This project is a great match for my skill set. I have a good level of experience for the majority of technologies involved.' },
+                    { min: 50, colour: 'green', message: 'While there are certainly some technologies in this project that I\'m less familiar with it shouldn\'t take me long to adapt. In past projects I\'ve proven myself capable of quickly adapting to new technologies especially when they are in a domain I am comfortable in.' },
+                    { min: 15, colour: 'orange', message: 'It looks like you have a lot of technologies that I am less experienced with, it\'s possible I might not be your perfect match. Don\'t rule me out entirely however, as part of an existing team there may still be a lot I can bring. I have had plenty of successful projects in the past that involved entirely new technologies.' },
+                    { min: 0, colour: 'red', message: 'There really doesn\'t seem to be much crossover between my skills and your project. I would be hesitant to reject it purely based on an automated matching tool so why not contact me to discuss details.' }
+                ]
+            );
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+}
+
+<div class="columnContent">
+
+    <p>At Creou we are passionate about software development. We are a consultancy specialising in everything .Net. Founded in 2011 we provide expertise and developer support for C# .Net projects. We rapidly apply our previous experience to an unfamiliar code base. We find new language features fascinating (especially C# 6’s new null conditional operator)</p>
+
+    <div class="row">
+        <div class="col-sm-4 col-sm-push-1">
+            <p class="text-center">
+                <a href="@Url.Content("/content/about/Creou-Profile.pdf")">Download PDF Profile</a>
+            </p>
+        </div>
+        <div class="col-sm-4 col-sm-push-2">
+            <p class="text-center">
+                <a href="@Url.Content("/content/about/Creou-Profile.pdf")">Download DOCX Profile</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="cv" class="hidden-xs">
+        <div id="tabs" class="cvSectionContent">
+            <ul class="tabMenu">
+                <li><a href="#tabs-TheTeam">The Team</a></li>
+                <li><a href="#tabs-OpenSource">Open Source</a></li>
+                <li><a href="#tabs-Community">Community</a></li>
+                <li><a href="#tabs-Projects">Projects</a></li>
+            </ul>
+
+            <div id="tabs-TheTeam" class="cvSection">
+                @{Html.RenderPartial("_TheTeam");}
+            </div>
+            <div id="tabs-OpenSource" class="cvSection">
+                @{Html.RenderPartial("_OpenSource");}
+            </div>
+            <div id="tabs-Community" class="cvSection">
+                @{Html.RenderPartial("_Community");}
+            </div>
+            <div id="tabs-Projects" class="cvSection">
+                @{Html.RenderPartial("_Projects");}
+            </div>
+        </div>
+    </div>
+
+    <div class="visible-xs">
+        <div>
+            @{Html.RenderPartial("_TheTeam");}
+        </div>
+        <div>
+            @{Html.RenderPartial("_OpenSource");}
+        </div>
+        <div>
+            @{Html.RenderPartial("_Community");}
+        </div>
+        <div>
+            @{Html.RenderPartial("_Projects");}
+        </div>
+    </div>
+</div>
+
+@section SideBar
+{
+    @{Html.RenderPartial("_Contact");}
 }

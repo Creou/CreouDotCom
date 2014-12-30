@@ -372,12 +372,17 @@ ul li ul
 /* Content containers */
 .columnContent
 {
-    margin: 0px 5px 10px 5px;
-    padding: 10px;
+    padding: 10px 0px 5px 0px;
     background: url('/content/trans_pixel_b.png');
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+
+    p
+    {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 
 /* Forms */
@@ -597,7 +602,7 @@ input.pressableButton:hover
        -moz-transition: all 0.3s ease-in-out;
         -ms-transition: all 0.3s ease-in-out;
          -o-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;       
+            transition: all 0.3s ease-in-out;  
 }
 
 .keyMessageContent:hover
@@ -649,21 +654,21 @@ input.pressableButton:hover
 }
 */
 
-#cv #cvLinks
+#cvLinks
 {
-    width: 500px;
+    width: 420px;
     height: 50px;
     list-style: none;
     margin: auto;   
 }
 
-#cv #cvLinks li
+#cvLinks li
 {
     float: left;
     margin: 10px;
 }
 
-#cv #cvLinks li a
+#cvLinks li a
 {
     color: White;
 }
@@ -680,7 +685,7 @@ input.pressableButton:hover
 
 #cv .cvSection
 {
-    margin: 10px 0 10px 210px;
+    margin: 10px 0 10px 207px;
     padding: 20px;
     
     border-left: 2px solid #5cbdf4 !important;
@@ -689,7 +694,12 @@ input.pressableButton:hover
        -moz-border-radius: 10px 0px 0px 10px;
             border-radius: 10px 0px 0px 10px;    
             
-    min-height: 300px;
+    min-height: 315px;
+
+    h1 
+    {
+        margin-top: 0px;
+    }
 }
 
 #cv ul.tabMenu
