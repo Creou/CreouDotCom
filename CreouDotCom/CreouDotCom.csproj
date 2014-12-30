@@ -392,6 +392,7 @@
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\knockout-2.2.1.js" />
     <Content Include="scripts\knockout-2.2.1.min.js" />
+    <Content Include="scripts\masonry.pkgd.min.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="scripts\modernizr-2.min.js" />
     <Content Include="scripts\npm.js" />
@@ -426,6 +427,7 @@
     <Content Include="Views\Home\_OpenSource.cshtml" />
     <Content Include="Views\Home\_Community.cshtml" />
     <Content Include="Views\Home\_Projects.cshtml" />
+    <Content Include="Views\Home\_TechMatch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

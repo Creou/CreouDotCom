@@ -1,4 +1,10 @@
-﻿.rounded-corners (@radius: 5px) {
+﻿@creou-colour: #5cbdf4;
+
+@screen-sm-min:              768px;
+@screen-md-min:              992px;
+@screen-lg-min:              1200px;
+
+.rounded-corners (@radius: 5px) {
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
   -ms-border-radius: @radius;
@@ -21,10 +27,26 @@
 }
 
 #tech-match {
-    #choices {
+
+    margin: 10px;
+    padding: 10px;
+    background: black;
+    border: 1px solid #5cbdf4; 
+    .rounded-corners(10px);
+
+    .tech-choices {
 		margin: 0px;
 
-        li {
+        &#custom-choices
+        {
+            .tech-item
+            {
+                width: auto;
+                display: inline-block;
+            }
+        }
+
+        .tech-item {
             border: 1px solid;
             
             background: black;
@@ -32,9 +54,6 @@
 
             margin: 2px;
             padding: 1px;
-		    list-style: none;
-            display: inline-block;
-            float: left;
             text-align: center;
             vertical-align: top;
             border-spacing: 10px;
@@ -51,9 +70,9 @@
                     vertical-align: middle;
                     line-height: 0px;
                 }
-            }
+                }
 
-            &:hover {
+                &:hover {
                 background: #222222;
                 .transition(0.2s);
 
@@ -89,43 +108,52 @@
                 }
             }
 
+            width: 61px;
+
             &[data-importance="10"]
             {
-                min-width: 216px;
-                height: 216px;
+                height: 196px;
                 font-size: 1.5em;
             }
             &[data-importance="9"]
             {
-                min-width: 104px;
-                height: 104px;
+                height: 96px;
                 font-size: 1.5em;
             }
             &[data-importance="8"]
             {
-                min-width: 48px;
-                height: 48px;
+                height: 46px;
                 font-size: 1.2em;
             }
             &[data-importance="7"]
             {
-                min-width: 20px;
-                height: 20px;
+                height: 21px;
                 font-size: 0.8em;
             }
+
+            &[data-column-width="2"]
+            {
+                width: 126px;
+            }
+
+            &[data-column-width="3"]
+            {
+                width: 191px;
+            }
+
+            &[data-column-width="4"]
+            {
+                width: 256px;
+            }
         }
-	    display: inline-block;
     }
 
-    #custom-tech {
+    .custom-tech
+    {
         text-align: center;
-        margin: 10px;
-        padding: 10px;
-        background: black;
-        border: 1px solid #5cbdf4; 
-        .rounded-corners(10px);
 
-        button {
+        button
+        {
             background: black;
             border-color: #5cbdf4; 
             .rounded-corners(10px);
@@ -149,6 +177,7 @@
         }
 
         .tech-compatibility-messages{
+            padding: 0px;
             margin-left: 0;
             li {
                 list-style: none;
@@ -170,23 +199,28 @@
     #breakdown {
 		margin: 20px 10px 0 10px;
 
-        li {
-            list-style: none;
+        text-align: left;
+
+        ul
+        {
+            margin-left: 0px;
+            padding: 0px;
+
+            li 
+            {
+                list-style: none;
+            }
         }
 
         .tech-details {
-            float: left;
-            width: 385px;
 
             .tech-name {
-                display: inline-block;
-                width: 180px;
-                text-align: right;
+                font-size: 16px;
             }
-
+ 
             .experience-graph {
                 display: inline-block;
-                width: 200px;
+                width: 100%;
 
                 .graph-value {
                     border: 1px solid #5cbdf4;
@@ -202,8 +236,27 @@
             }
         }
 
-        .tech-experience {
-            margin-left: 385px;
+        @media (min-width: @screen-sm-min){
+
+            .tech-details
+            {
+                float: left;
+                width: 385px;
+
+                .tech-name {
+                    display: inline-block;
+                    width: 160px;
+                    text-align: right;
+                }
+
+                .experience-graph {
+                    width: 200px;
+                }
+            }
+
+            .tech-experience {
+                margin-left: 385px;
+            }
         }
     }
 }

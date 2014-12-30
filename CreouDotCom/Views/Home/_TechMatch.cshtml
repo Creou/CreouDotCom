@@ -1,0 +1,65 @@
+﻿<div id="tech-match">
+    <form id="custom-tech">
+
+        <p>Select the technologies you use for an automatic project assesment.</p>
+
+        <div id="choices" class="tech-choices" data-bind="foreach: tech">
+            <div class="tech-item" data-bind="click: toggleSelect, attr: {'data-importance': im, 'data-column-width': col, 'data-selected': selected, 'data-good': good, 'data-custom': isCustom}">
+                <div>
+                    <span data-bind="text: name"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="custom-choices" class="tech-choices" data-bind="foreach: customTech">
+            <div class="tech-item" data-bind="click: toggleSelect, attr: {'data-importance': im, 'data-column-width': col, 'data-selected': selected, 'data-good': good, 'data-custom': isCustom}">
+                <div>
+                    <span data-bind="text: name"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-tech">
+            <span>Can't see a technology you use?</span>
+            <input type="text" />
+            <button type="submit">Add tech</button>
+        </div>
+
+        <div class="formContainer resultsContainer" data-bind="visible: selected().length > 0">
+            <div class="outerFormTitle">
+                <div class="formTitle">Results</div>
+            </div>
+
+            <div id="compatibility">
+                <div class="compatibility-rating">Compatibility rating <span data-bind="style: {color: overallCompatibilityBoundary().colour}"><span data-bind="text: overallCompatibility"></span>%</span></div>
+                <div class="compatibility-message" data-bind="text: overallCompatibilityBoundary().message"></div>
+
+                <p>
+                    <a data-bind="attr: {href: contactUrl}">Contact me regarding this project</a>
+                </p>
+
+                <ul class="tech-compatibility-messages" data-bind="foreach: selectedWithPlc">
+                    <li>
+                        <div data-bind="text: plc().message, attr: {'data-good': plc().good}"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="breakdown">
+                <div>Full project breakdown:</div>
+                <ul data-bind="foreach: selected">
+                    <li>
+                        <div class="tech-details" data-bind="attr: {'data-custom': isCustom() ? true : false}">
+                            <span class="tech-name" data-bind="text: name"></span>
+                            <span class="experience-graph">
+                                <span class="graph-value" data-bind="style: {width: width}, attr: {'data-graph-category': graphCategory}"></span>
+                            </span>
+                        </div>
+                        <div class="tech-experience" data-bind="text: cm"></div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>

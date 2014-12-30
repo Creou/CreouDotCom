@@ -8,7 +8,8 @@
             selected: ko.observable(data.selected),
             ex: ko.observable(data.ex),
             im: ko.observable(data.im),
-            width: ko.observable((data.ex / 10 * 200) + 'px'),
+            col: ko.observable(data.col),
+            width: ko.observable((data.ex / 10 * 100) + '%'),
             graphCategory: ko.computed(function () {
                 if (data.ex > 6) {
                     return 'good';
@@ -28,7 +29,9 @@
         }
     }
 
-    exports.init = function (container, techData, boundaryData) {
+    exports.init = function ($container, techData, boundaryData) {
+
+        var container = $container[0]
 
         var observableTechData = [];
         for (var i = 0; i < techData.length; i++) {
@@ -37,10 +40,14 @@
 
         var viewModel = {
             tech: ko.observableArray(observableTechData),
+            customTech: ko.observableArray()
         }
 
         viewModel.selected = ko.computed(function () {
-            var selectedItems = _.filter(this.tech(), function (item) {
+
+            var allTech = _.union(this.tech(), this.customTech());
+
+            var selectedItems = _.filter(allTech, function (item) {
                 return item.selected();
             });
 
@@ -97,11 +104,17 @@
             var customTechName = $(container).find('#custom-tech input').val();
 
             if (customTechName && customTechName.length > 0) {
-                viewModel.tech.push(createTechObservable({ name: customTechName, ex: 0, isCustom: true, selected: true }));
+                var newTech = createTechObservable({ name: customTechName, ex: 0, isCustom: true, selected: true });
+                viewModel.customTech.push(newTech);
                 $(container).find('#custom-tech input').val('');
             }
         });
 
-        ko.applyBindings(viewModel, container);   
+        ko.applyBindings(viewModel, container);
+
+        var ms = $container.find('#choices').masonry({
+            columnWidth: 65,
+            itemSelector: '.tech-item'
+        });
     };
 }(techMatch))
