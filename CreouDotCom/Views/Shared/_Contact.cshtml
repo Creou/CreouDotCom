@@ -1,21 +1,19 @@
 ﻿@model CreouDotCom.ViewModels.ContactViewModel
-<div class="columnContent">
-    <div class="formContainer">
-        @using (Html.BeginForm(MVC.Contact.Contact(Model)))
-        {
-            <div class="outerFormTitle">
-                <div class="formTitle">
-                    Contact Us
-                </div>
-                <div class="clear">
-                </div>
+<div class="columnContent formContainer">
+    @using (Html.BeginForm(MVC.Contact.Contact(Model)))
+    {
+        <div class="outerFormTitle">
+            <div class="formTitle">
+                Contact Us
             </div>
-            @Html.EditorForModel()
-            <div class="pressableButtonContainer">
-                <div class="pressableButtonInner">
-                    <input class="pressableButton" type="submit" value="send" />
-                </div>
+            <div class="clear">
             </div>
-        }
-    </div>
+        </div>
+        @Html.EditorForModel()
+        <div class="pressableButtonContainer">
+            <div class="pressableButtonInner">
+                <input class="pressableButton" type="submit" value="send" />
+            </div>
+        </div>
+    }
 </div>

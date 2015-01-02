@@ -3,14 +3,13 @@
     ViewBag.Title = "Index";
     ViewBag.MenuPage = CreouDotCom.ViewModels.MenuPage.Blog;
 }
-<div class="content">
-
+<div>
     <ul id="blogPreviewList">
         @foreach (var item in Model.NewsModel.BlogPosts)
         {
             <li class="blogPreviewItem">
 
-                <div class="formContainer">
+                <div class="columnContent formContainer">
 
                     <div class="outerFormTitle">
                         <div class="formTitle"><a href="@item.InternalHttpPath">@item.Title</a></div>

@@ -79,31 +79,6 @@ textarea
     }
 }
 
-/* General content styles */
-.content
-{
-    font-size: 16px;
-}
-
-.content .contentHeader
-{
-    margin-bottom: 10px;
-    padding: 10px;
-    background: black;
-    
-    border: 2px solid #5cbdf4;
-    
-    -webkit-border-radius: 10px;
-       -moz-border-radius: 10px;
-            border-radius: 10px; 
-}
-
-.content .contentHeader h1
-{
-    font-size: 40px;
-    line-height: 50px;
-}
-
 h1
 {
     font-family: CreouFont, Tahoma, Geneva, sans-serif;
@@ -378,6 +353,7 @@ ul li ul
 .columnContent
 {
     padding: 10px 0px 5px 0px;
+    margin-bottom: 40px;
     background: url('/content/trans_pixel_b.png');
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -390,10 +366,29 @@ ul li ul
     }
 }
 
+.columnContent .contentHeader
+{
+    margin: 0 10px 10px 10px;
+    padding: 10px;
+    background: black;
+    
+    border: 2px solid #5cbdf4;
+    
+    -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+            border-radius: 10px; 
+}
+
+.columnContent .contentHeader h1
+{
+    font-size: 30px;
+    line-height: 40px;
+}
+
 /* Forms */
 .formContainer
 {
-    margin: 10px 10px 50px 10px;
+    margin: 10px 0 40px 0;
     padding: 10px;
     border: 2px solid #5cbdf4;
     -webkit-border-radius: 10px;
@@ -660,7 +655,7 @@ input.pressableButton:hover
     ul
     {
         margin: 0px 0px 0px 0px;
-        padding: 10px;
+        padding: 0 10px 10px 10px;
     }
 }
 
@@ -756,6 +751,7 @@ input.pressableButton:hover
 .project-header
 {
     font-weight: bold;
+    margin-left: 10px;
 }
 
 /* Tech list */
