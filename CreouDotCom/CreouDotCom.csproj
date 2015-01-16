@@ -210,6 +210,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\blog\entityframework.html" />
+    <Content Include="content\blog\entityframework_files\image001.png" />
+    <Content Include="content\blog\entityframework_files\image002.png" />
+    <Content Include="content\blog\entityframework_files\image003.png" />
     <Content Include="content\blog\wp8soaphttpheaders.html" />
     <Content Include="content\blog\fizzbuzzincss.html" />
     <Content Include="content\blog\pythoncheatsheet.html" />

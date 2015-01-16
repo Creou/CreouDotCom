@@ -1,0 +1,283 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Entity Framework performance considerations</title>
+	<meta name="Date" content="2015-01-13T09:00:00Z" />
+	<meta name="PublishDate" content="2015-01-13T09:00:00Z" />
+	<meta name="Id" content="entityframework" />
+	<meta name="Tags" content="Entity Framework" />
+	<meta name="Zones" content="blog" />
+	<meta name="NamedFeeds" content="" />
+</head>
+<body>
+	<p>
+		I recently started using Entity Framework in earnest and
+		agree that it is a fantastic tool. Something I found however is that it can
+		have performance issues especially when dealing with bulk data. These are the
+		techniques I discovered that can radically improve the situation so that
+		hopefully EF will be fast enough for most common bulk data operations.
+	</p>
+	<p class="PreviewEnd" />
+
+	<h2>Defining the problem</h2>
+
+	<p>
+		Entity framework is already great when dealing with one or
+		two records at a time, both creating/updating and reading. The examples on
+		Pluralsight and the Microsoft pages illustrate well how to quickly and reliably
+		create apps that would otherwise take longer and be harder to maintain. The
+		problem doesn’t manifest until you start trying to operate on larger datasets. This
+		might be because you are importing data, or perhaps processing large numbers of
+		child objects.
+	</p>
+
+	<p>
+		I divide the optimisations into 2 main parts. The first mainly
+		is of benefit when creating new records, and the second when reading existing.
+		The sections below discuss these but you should also bear in mind the points
+		later about <a href="#realworld">real world usage</a>.
+	</p>
+
+	<p>All code examples can be found in full on <a href="https://github.com/creousam/EntityFrameworkPerfomanceExamples"> github here.</a></p>
+	<p>&nbsp;</p>
+
+	<h2>Creating new records/bulk change operation.</h2>
+
+	<p>
+		If you are creating new / updating existing records in bulk
+		then you need to be aware of ‘AutoDetectChangesEnabled’.
+	</p>
+
+	<p><a href="http://msdn.microsoft.com/en-gb/data/jj556205.aspx">http://msdn.microsoft.com/en-gb/data/jj556205.aspx</a></p>
+
+	<p>
+		To summarise the above linked page, you can set it to false
+		whilst making changes to your entity objects which postpones all the processing
+		EF will do as you update/create objects. You then have to set it back to true
+		after making your changes and before saving them.
+		<pre>db.Configuration.AutoDetectChangesEnabled = false;
+for (int i = 0; i < num; i++)
+{
+	db.Blogs.Add(new Blog { Name = "blog " + i.ToString() });
+}
+db.Configuration.AutoDetectChangesEnabled = true;
+db.SaveChanges();</pre>
+	</p>
+
+	<p>
+		An alternative (for create new only) is to create the
+		objects in memory and add them to the context with AddRange.
+	</p>
+
+	<p>
+		For the following tests I will be using the blogging app example
+		from the Microsoft ‘Data Developer Center’. (<a href="http://msdn.microsoft.com/en-gb/data/jj193542">http://msdn.microsoft.com/en-gb/data/jj193542</a>)
+	</p>
+
+	<p>
+		The test compares running with ‘AutoDetectChangesEnabled’ as
+		true, as false, with AddRange and for reference with a stored procedure passed
+		a TableValueParameter (this is the fastest way I know of to create/update bulk
+		records in .Net).
+	</p>
+
+	<p>Test 1: Create 10,000 blogs with 1 post each.</p>
+
+	<p>Test 2: Create 100 blogs with 100 posts each.</p>
+
+	<p>Test 3: Create 1 blog with 10,000 posts. </p>
+
+	<p>Test 4: Create 1,000 blogs with 1,000 posts.</p>
+
+	<p>
+		All tests were done locally on a desktop PC with a local TSQL
+		database being created new for each run.
+	</p>
+
+	<p>The results are as follows.</p>
+
+	<div class="imageContainer">
+		<img border=0 width=601 height=146 id="Picture 6" src="entityframework_files/image001.png" />
+	</div>
+
+	<p>
+		*I was unable to run test 4 using any method but TVP, it was
+		taking too long (much longer than 30 minutes, quick guess is about 4-8 hours) with
+		normal processing and had out of memory errors with postponed and AddRange
+		methods. For this reason using PostPoned or AddRange methods should be limited
+		to reasonably sized groups of data.
+	</p>
+
+	<p>
+		For updating in my tests there seemed to be no difference
+		between postponed and normal change detection, although this might be specific
+		to my situation.
+	</p>
+
+	<div class="imageContainer">
+		<img border=0 width=461 height=35 id="Picture 3" src="entityframework_files/image002.png" />
+	</div>
+
+	<p>
+		For further discussion on this and additional suggestions
+		see this Stack Overflow thread:
+	</p>
+
+	<p>
+		<a href="http://stackoverflow.com/questions/5940225/fastest-way-of-inserting-in-entity-framework/5942176#5942176">http://stackoverflow.com/questions/5940225/fastest-way-of-inserting-in-entity-framework/5942176#5942176</a>
+	</p>
+
+	<p>Summary: </p>
+
+	<p>
+		For bulk create operations bigger than a hundred you will want
+		to use Postponed change detection or AddRange as these are orders of magnitude
+		faster than normal processing. If dealing with datasets significantly bigger
+		than 10,000 records you will either need to break up the operation into chunks
+		or fall back to Table Value Parameters passed to stored procedure.
+	</p>
+
+	<p>&nbsp;</p>
+
+	<h2>Reading existing records</h2>
+
+	<p>
+		The way you write you code can have significant impacts on
+		performance when performing bulk operations. You have to really think about the data you
+		actually need and write the EF query to only return that.
+	</p>
+
+	<p>
+		The question to ask is, “Am I getting this data because a) I
+		want to update it (right now), or b) to pass some data to somewhere else (e.g.
+		to a UI to show to a user).
+		<ul>
+			<li>
+				If the answer is b) you should restrict the data
+				being returned to only the fields you need by using a ‘Select’ statement on the
+				query. Try to avoid using code loops to filter or extract data from sub items.
+				<br /><br />
+				If you really want (or need due to repository layer) to get the entire object but are not
+				intending to update the object you should use the ‘AsNoTracking’ option.
+			</li>
+			<li>
+				If the answer is a) then you should still filter the results
+				as much as possible in the initial query to reduce the amount of data being
+				returned and the number of objects for EF to track.
+			</li>
+		</ul>
+	</p>
+
+
+	<p>Time for some tests.</p>
+
+	<p>
+		In my example a collection of manufacturer Ids
+		are passed into a method. An EF call is made to obtain the manufacturer objects
+		that match the names passed in. A loop then processes these objects to filter those
+		that match some condition based on the state of child objects.
+		<pre>List&lt;manufacturer&gt; manufacturers = db.Manufacturers.Where(m => manufacturersToLookAt.Contains(m.Id)).ToList();
+List&lt;string&gt; manufacturersWithSmallLightItems = new List&lt;string&gt;();
+foreach (var manufacturer in manufacturers)
+{
+	if (manufacturer.Items.Any(m => m.MetersCubed < 2 && m.Weight < 5))
+	{
+		manufacturersWithSmallLightItems.Add(manufacturer.Name);
+	}
+}
+return manufacturersWithSmallLightItems;</pre>
+	</p>
+
+	<p>
+		On each pass of the loop the code is looking at the
+		collection of items connected to the manufacturer. Because EF needs to get this
+		data from SQL this translates to 1 SQL call per loop iteration.
+	</p>
+
+	<p>
+		You could prevent this by adding “Items” to the “includes”
+		list, <pre>List&lt;string&gt; manufacturers = db.Manufacturers.Include(i => i.Items).Where(m => manufacturersToLookAt.Contains(m.Id)).ToList();
+</pre><br />which reduces the number of SQL calls to 1. However we’re still returning a
+		lot of data from the query that actually isn’t actually needed. Specifically we
+		are returning 1 row per sub-item, ie 1 row per “Item” per “manufacturer” that
+		matched the first query (including the full manufacturer data once per row
+		meaning 4000 rows of 11 columns of data = 44,000 fields of data if 4
+		manufacturers were being queried that have 1000 items each).
+	</p>
+
+	<p>
+		A much more effective way to accomplish the same thing is to
+		move the full logic into the EF query. <br />
+		<pre>List&lt;string&gt; manufacturersWithSmallLightItems = db.Manufacturers
+	.Where(m => manufacturersToLookAt.Contains(m.Id) && m.Items.Any(i => i.MetersCubed < 2 && i.Weight < 5))
+	.Select(m => m.Name)
+	.ToList();
+</pre><br />This will now only return 4 items (vs
+		44,000) resulting in much improved performance. With the full logic inside the
+		EF query the include statement is no longer needed.
+	</p>
+
+	<p>
+		Time for some tests. In the tests I am  querying 100 manufacturers which results in 98 matching objects.
+	</p>
+
+	<p>
+		A total of 6 test results are presented as 2 groups of 3 tests. The first group of tests just cares about the matching manufacturers, the second group return all manufacturers with a
+		calculated result of matching or not.
+		The variations on the test are:
+		<ul>
+			<li>Filtering in code using a loop.</li>
+			<li>Filtering in code using a loop but using the 'Include' to pre-fetch the sub items.</li>
+			<li>All filtering done in the query.</li>
+		</ul>
+		Each test is ran 10 times to minimise random noise. These
+		are the results:
+	</p>
+
+	<p>
+		<img border=0 width=470 height=181 id="Picture 7" src="entityframework_files/image003.png" />
+	</p>
+
+	<p>&nbsp;</p>
+
+	<a name="realworld"></a>
+	<h2>Real world usage</h2>
+
+	<p>
+		In a production environment you may not have access to the context
+		object, if for instance your company has hidden EF behind a repository layer.
+		In addition there may be some relationships in the database that are not
+		represented in the EF models with virtual properties. In order to still be able
+		to make efficient use of EF for bulk operations the repository layer will need
+		to return the EF IQueryable rather than for instance, an IList, and also allow
+		for specifying ‘includes’.
+	</p>
+	<h3>Queries addressing tables not connected with 'virtual properties'.</h3>
+	<p>
+		If the repository layer doesn't return the IQueryable object you may need to create specific
+		repository methods in order to get suitable performance.
+	</p>
+
+	<p>
+		If your repository layer is returning the IQueryable object,
+		then you can compose an efficient query by passing one query object into other
+		query, EF will turn it into a nested subquery which will still be faster than
+		returning more data than is needed and performing the logic in code.
+		<br />
+		In the example below 'ItemOrder' does not have a virtual property relationship with 'Item' even though there is a logical connection.
+		First the 'ItemOrder' query is composed and this is passed into the 'Item' query.
+		EF will compile this code into a single SQL query and will only return the data needed because the query isn't compiled until needed (in the ToList method).
+		<pre>var orderRepo = new LogisticsRepo&lt;Itemorder&gt;();
+var itemRepo = new LogisticsRepo&lt;Item&gt;();
+var outstandingOrderItemIds = orderRepo.GetQueryable(o => !o.DeliveredDate.HasValue).Select(o => o.ItemId);
+var manus =
+	itemRepo.GetQueryable(i => outstandingOrderItemIds.Contains(i.Id))
+			.Select(i => i.Manufacturer.Name)
+			.Distinct()
+			.ToList();</pre>
+	</p>
+
+	<p>&nbsp;</p>
+
+</body>
+</html>
