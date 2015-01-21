@@ -1,0 +1,293 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Angular learning experiences</title>
+	<meta name="Date" content="2015-01-21T09:00:00Z" />
+	<meta name="PublishDate" content="2015-01-21T09:00:00Z" />
+	<meta name="Id" content="angular" />
+	<meta name="Tags" content="Angular SPA" />
+	<meta name="Zones" content="blog" />
+	<meta name="NamedFeeds" content="" />
+</head>
+<body>
+	<h1>Learning Angular</h1>
+
+	<p>
+		As part of the Conference App that we built recently I was
+		tasked with learning how to use Angular.
+	</p>
+
+	<p>
+		This blog details some of the ups and downs of the learning
+		experience.
+	</p>
+
+	<p class="PreviewEnd" />
+
+	<h2>Disclaimer</h2>
+
+	<p>
+		Having now finished the first phase of the conference app I
+		at least know something about Angular, although I’m still far from an expert. Undoubted
+		some of the ways that I have accomplished goals could have been done better,
+		but this is part of the learning experience.
+	</p>
+
+	<p>
+		This is not a ‘learn Angular’ blog, it’s a blog about me
+		trying to learn Angular.
+	</p>
+
+
+
+	<p>
+		<h2>Prior Knowledge</h2>
+		I’ve previously worked on WebAPI projects so I was familiar
+		with producing a REST back end. I’ve also worked on ASP.net and WebForms
+		projects and felt the pain of trying to understand the .Net page lifecycle and custom
+		controls.
+	</p>
+
+	<p>
+		I’ve not done a great deal of HTML or Javascript as most of
+		the projects I’d previously worked on had already existing front end systems in
+		place and had never worked on a single page web application.
+	</p>
+
+
+
+	<p>
+		<h2>Why</h2>
+		Most of my previous experience has been with server side
+		technologies with only minimal front end experience and so I’m pushing myself
+		to keep up to date with newer and emerging front end technologies. Simon had
+		identified a need for an app to assist conference delegates, therefore this
+		seemed like a good excuse to get stuck into learning about a single page app
+		framework.
+	</p>
+
+
+
+	<p>
+		<h2>Why Angular</h2>
+		There are a number of single page app frameworks that we
+		could have chosen like Ember, or Backbone (a comparison of which can be found
+		here:  <a href="https://www.airpair.com/js/javascript-framework-comparison">https://www.airpair.com/js/javascript-framework-comparison</a>)
+	</p>
+
+	<p>
+		As a company we’ve recently been exposed to (the results of)
+		Angular on a client project and we were impressed by the results. Also it seems
+		like one of the most popular frameworks and possibly the most supported so we
+		choose this as our framework of choice for this app.
+	</p>
+
+
+
+	<p>
+		<h2>Conference App</h2>
+		The point of the app is to facilitate the experience of
+		attending a conference with multiple ‘Tracks’ of discourses that could be
+		attended. A user can view the various sessions grouped by either ‘Track’ or by
+		time and be presented with list of session titles and times. By clicking on
+		those titles they can find out additional information such as room name/number,
+		the speaker, and the session description. The user can also choose to leave
+		feedback about each session and also about the conference as a whole. This
+		feedback comprises some 1-5 star ratings for various aspects and also free text
+		for suggestions/comments. The feedback is saved to a database for the
+		conference organisers to analyse to improve future events.
+	</p>
+	<p>
+		If you want to see the finished app you can find it here:
+		<a href="http://creouconferenceappserver.azurewebsites.net/app/AwesomeApp.html#/home">
+			http://creouconferenceappserver.azurewebsites.net/app/AwesomeApp.html#/home
+		</a>
+	</p>
+
+
+
+	<p>
+		<h2>Initial impression.</h2>
+		Having previously worked with ASP.net web pages I was
+		excited about the (relative/reported) simplicity of the Angular way. Had I had
+		experience of some of the other SPA frameworks this may not have been such a
+		novelty, but this was the first one I’d had opportunity to use/learn. (If you’ve
+		ever done web forms you will understand).
+	</p>
+
+	<p>
+		I was developing the app in Visual Studio and being a fan of
+		Nuget used that to obtain the Angular package. There are some fairly easy to
+		follow videos on the Angular web site, although it wasn’t clear from the outset
+		how these simple demos would translate to the requirements of my app.
+	</p>
+
+	<p>
+		This is partially due to it being a web technology but I
+		found it initially confusing that there seems to be a fairly large number of
+		different ways to achieve the same result without any being obviously more
+		correct than others. I also think the Angular website needs some love to make
+		it more obvious where the tutorials are.  (They are in the ‘Develop’ toolbar
+		menu). I ended up watching 3rd party tutorial videos which may or
+		may not have contributed to the ‘many ways to do something’ issue.
+	</p>
+
+
+	<p>
+		<h2>Angular Philosophies</h2>
+		Angular code is modular with all dependencies injected via
+		constructor injection. This makes it very easy to write automated tests for.
+		<pre>app.controller('controllerName', function (injected, dependancies, here) {
+...code that uses the dependancies...
+});
+</pre>
+	</p>
+
+
+	<p>
+		<h2>Structure</h2>
+		The ‘single page’ is constructed in the usual way, either as
+		a static page or delivered some other way if required (MVC). The single page
+		has a single ‘ng-app’ attribute on the html tag that signifies that this is an angular container.
+		Also on the static page there is an element with an ‘ng-view’ attribute. This signifies
+		the container for all of the Angular generated content. Additional content can appear outside of this but will not be inserted by Angular.
+		<pre>&lt;html lang="en" ng-app="app"&gt;
+&lt;head&gt;...&lt;/head&gt;
+&lt;body&gt;
+	...
+	&lt;div id="view" ng-view&gt;&lt;/div&gt;		
+&lt;/body&gt;	
+&lt;/html&gt;
+</pre>
+	</p>
+	<h3>Routing</h3>
+	<p>
+		Navigation between ‘virtual’ pages is via anchor style links
+		which are ‘routed’ via a routing engine to specified ‘controllers’ and ‘templates’.
+		<pre>app.config(function ($routeProvider, $locationProvider) {
+	...
+	$routeProvider.when('/byTrack', {
+		templateUrl: 'partials/byTrack.html',
+		controller: 'ByTrackController'
+	});
+	$routeProvider.when('/byTime', {
+		templateUrl: 'partials/byTime.html',
+		controller: 'ByTimeController'
+	});
+	...
+}
+</pre><br />
+		The routing can load templates via HTTP requests from separate
+		files reducing the amount of mark-up that must be loaded on app start-up/page
+		load. ‘Templates’ are basically the ‘view’ of MVVM and are Angular compiled HTML files that
+		will get inserted into the ng-view container.
+	</p>
+	<p>
+		Links do not have to be within the ng-view container as demonstrated in the conference app by
+		a <a href="http://getbootstrap.com/components/#navbar">Bootstrap navbar</a> that sits just above the ng-view container.
+		<pre>&lt;div role="navigation"&gt;
+	&lt;ul class="nav nav-pills ddd" nav-active-link&gt;
+		&lt;li role="presentation"&gt;&lt;a href="#/home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+		&lt;li role="presentation"&gt;&lt;a href="#/byTrack"&gt;By Track&lt;/a&gt;&lt;/li&gt;
+		&lt;li role="presentation"&gt;&lt;a href="#/byTime"&gt;By Time&lt;/a&gt;&lt;/li&gt;
+		&lt;li role="presentation"&gt;&lt;a href="#/eventFeedback"&gt;Feedback&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+	</p>
+
+	<h3>Controllers and views</h3>
+	<p>
+		Controllers, like other angular components are just JavaScript
+		functions. The controller prepares data making it available for binding to the
+		view (equivalent to the view-model?). In our conference app the controllers’
+		job is typically to make a request from the data layer, and then sort/filter
+		the data as required. It is also where event listeners are registered to deal
+		with e.g. button clicks and then sending the data back to the data layer.
+		<br />In the example below from the conference app the event feed-back controller is fetching the 'company size' values
+		<pre>app.controller('EventFeedbackController', function ($scope, ...) {
+	...
+	$scope.statii = statiiService.query(function (value) {
+		var x = value;
+	});...
+}
+</pre><br/>Which are used to populate a drop down combo box bound in the view:<pre>								
+&lt;label class="col-xs-7 col-sm-8"&gt;What size company do you work for?&lt;/label&gt;
+&lt;div class="col-xs-5 col-sm-4"&gt;
+&lt;select ng-model="feedback.CompanySize" class="form-control" ng-disabled="formDisable" ng-options="size.Id as size.Text for size in sizes"&gt;
+	&lt;option value=""&gt;Select company size&lt;/option&gt;
+&lt;/select&gt;
+&lt;/div&gt;</pre>
+	</p>
+
+	<h3>Directives</h3>
+	<p>
+		Directives are like code snippets, or partial views. They
+		can have their own controller and template. They are also the only part of the
+		Angular framework where it is recommended to interact directly with the DOM. In
+		the conference app I used a directive to render the sessions in a consistent
+		way and to minimise code duplication as various pages needed to render session
+		information. They can also be used to modify elements rather than replace them.
+		IMHO directives are one of the more complicated bits of Angular with a lot of
+		things, some quite complicated, to understand. However some of the more simple
+		things can be picked up fairly quickly.
+	</p>
+	<p>
+		Session detail directive from app:
+		<pre>		
+app.directive('sessionDetail', function () {
+	return {
+		templateUrl: 'partials/sessionDetail.html',
+		restrict: 'E',
+		replace: true,
+		scope: {
+			session: '=data'
+		},
+		controller: 'SessionDetailController'
+	};
+});</pre>
+	</p>
+
+
+	<p>
+		<h2>Issues</h2>
+		Some things can be quite trying, for instance directives are
+		supposed to be declared using pascalCase but consumed in hyphenated-format. E.g.
+		my session directive was declared as sessionDetail but had to be consumed as
+		session-detail. It’s a feature that you <strong><em>can</em></strong>	 do this however I didn’t realise
+		at first that it was <strong><em>required</em></strong>. You cannot consume your directives in
+		their declared pascalCase, it just doesn’t work. There is actually a page on
+		the Angular site that lists some common pitfalls, but personally I think these
+		will depend on your programming background. I also had issues with ‘promises’.
+		This is possibly due to the various ‘types’ of promises that exist currently
+		due to non-universal browser support, but either way promises didn’t seem to
+		work as expected in a consistent manner which meant I ended up using call backs
+		some of the time.
+	</p>
+
+
+	<p>
+		<h2>Awesomeness</h2>
+		It’s incredibly easy to knock up a CRUD style application in
+		minutes once you’ve got the hang of it with virtually no ‘boilerplate’.
+		<br /><a href="http://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/">Example on SitePoint.</a>
+	</p>
+
+
+
+	<p>
+		<h2>Conclusion</h2>
+		Would I be happy to use Angular again? Yes most definitely.
+		Even when you consider technologies like MVC which make CRUD style operations
+		easy, if you are going to use Ajax or Javascript at all in your pages then it
+		could potentially benefit from Angular.
+	</p>
+
+
+	<p>
+		<a href="http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single">http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single</a>
+	</p>
+
+
+</body>
+</html>

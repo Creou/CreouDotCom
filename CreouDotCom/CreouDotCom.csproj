@@ -210,6 +210,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\blog\angular.html" />
     <Content Include="content\blog\entityframework.html" />
     <Content Include="content\blog\entityframework_files\image001.png" />
     <Content Include="content\blog\entityframework_files\image002.png" />
@@ -374,7 +375,13 @@
     <Content Include="css\reset.css" />
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap.css.map" />
+    <Content Include="css\style.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
     <Content Include="css\style.less" />
+    <Content Include="css\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="css\tech-match.less" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -385,6 +392,9 @@
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="content\about\Creou-Profile.docx" />
     <Content Include="content\about\Creou-Profile.pdf" />
+    <Content Include="css\style.css.map">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\CreouDev.pubxml" />
     <None Include="scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="scripts\jquery-2.1.1.js" />
