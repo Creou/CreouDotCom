@@ -144,20 +144,22 @@ db.SaveChanges();</pre>
 	</p>
 
 	<p>
-		The question to ask is, "Am I getting this data because a) I
-		want to update it (right now), or b) to pass some data to somewhere else (e.g.
-		to a UI to show to a user)".
+		The question to ask is, "Am I getting this data because:
+		<ol type="a">
+			<li>I want to update it (right now)? or </li>
+			<li>To pass some data to somewhere else (e.g. to a UI to show to a user)"?</li>
+		</ol>
 		<ul>
 			<li>
-				If the answer is b) you should restrict the data
-				being returned to only the fields you need by using a 'Select' statement on the
+				If the answer is 'b' you should restrict the data
+				being returned to only the fields you need, by using a 'Select' statement on the
 				query. Try to avoid using code loops to filter or extract data from sub items.
 				<br />
 				If you really want (or need due to repository layer) to get the entire object but are not
 				intending to update the object you should use the 'AsNoTracking' option.<br /><br />
 			</li>
 			<li>
-				If the answer is a) then you should still filter the results
+				If the answer is 'a' then you should still filter the results
 				as much as possible in the initial query to reduce the amount of data being
 				returned and the number of objects for EF to track.
 			</li>
@@ -243,7 +245,7 @@ return manufacturersWithSmallLightItems;</pre>
 		In a production environment you may not have access to the context
 		object, if for instance the existing architecture has
 		<a href="http://blog.magnusmontin.net/2013/05/30/generic-dal-using-entity-framework/comment-page-1/">hidden EF behind a repository layer.</a>
-		(Which <a href="https://www.google.co.uk/search?q=the%20repository%20is%20dead"> has both pros and cons.</a>)<br/>
+		(Which <a href="https://www.google.co.uk/search?q=the%20repository%20is%20dead"> has both pros and cons.</a>)<br />
 		In addition there may be some relationships in the database that are not
 		represented in the EF models with virtual properties. In order to still be able
 		to make efficient use of EF for bulk operations the repository layer will need
