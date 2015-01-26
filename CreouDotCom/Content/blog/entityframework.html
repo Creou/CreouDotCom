@@ -26,26 +26,25 @@
 		two records at a time, both creating/updating and reading. The examples on
 		Pluralsight and the Microsoft pages illustrate well how to quickly and reliably
 		create apps that would otherwise take longer and be harder to maintain. The
-		problem doesn’t manifest until you start trying to operate on larger datasets. This
+		problem doesn't manifest until you start trying to operate on larger datasets. This
 		might be because you are importing data, or perhaps processing large numbers of
 		child objects.
 	</p>
 
 	<p>
-		I divide the optimisations into 2 main parts. The first mainly
-		is of benefit when creating new records, and the second when reading existing.
+		I divide the optimisations into two main parts. The first is
+		of benefit mainly when creating new records, and the second when reading existing.
 		The sections below discuss these but you should also bear in mind the points
 		later about <a href="#realworld">real world usage</a>.
 	</p>
 
-	<p>All code examples can be found in full on <a href="https://github.com/creousam/EntityFrameworkPerfomanceExamples"> github here.</a></p>
-	<p>&nbsp;</p>
+	<p>All code examples can be found in full on <a href="https://github.com/Creou/EntityFrameworkPerfomanceExamples"> github here.</a></p>
 
 	<h2>Creating new records/bulk change operation.</h2>
 
 	<p>
 		If you are creating new / updating existing records in bulk
-		then you need to be aware of ‘AutoDetectChangesEnabled’.
+		then you need to be aware of 'AutoDetectChangesEnabled'.
 	</p>
 
 	<p><a href="http://msdn.microsoft.com/en-gb/data/jj556205.aspx">http://msdn.microsoft.com/en-gb/data/jj556205.aspx</a></p>
@@ -65,20 +64,18 @@ db.SaveChanges();</pre>
 	</p>
 
 	<p>
-		An alternative (for create new only) is to create the
+		An alternative (when creating new entities) is to create the
 		objects in memory and add them to the context with AddRange.
 	</p>
 
 	<p>
 		For the following tests I will be using the blogging app example
-		from the Microsoft ‘Data Developer Center’. (<a href="http://msdn.microsoft.com/en-gb/data/jj193542">http://msdn.microsoft.com/en-gb/data/jj193542</a>)
+		from the <a href="http://msdn.microsoft.com/en-gb/data/jj193542">Microsoft 'Data Developer Center'</a>.
 	</p>
 
 	<p>
-		The test compares running with ‘AutoDetectChangesEnabled’ as
-		true, as false, with AddRange and for reference with a stored procedure passed
-		a TableValueParameter (this is the fastest way I know of to create/update bulk
-		records in .Net).
+		The test compares running with 'AutoDetectChangesEnabled' as true, as false, with AddRange and (as a control) with a stored procedure passed
+		a TableValueParameter (as this is the fastest way I know of to create/update bulk records in .Net).
 	</p>
 
 	<p>Test 1: Create 10,000 blogs with 1 post each.</p>
@@ -127,7 +124,7 @@ db.SaveChanges();</pre>
 		<a href="http://stackoverflow.com/questions/5940225/fastest-way-of-inserting-in-entity-framework/5942176#5942176">http://stackoverflow.com/questions/5940225/fastest-way-of-inserting-in-entity-framework/5942176#5942176</a>
 	</p>
 
-	<p>Summary: </p>
+	<h3>Summary: </h3>
 
 	<p>
 		For bulk create operations bigger than a hundred you will want
@@ -137,28 +134,27 @@ db.SaveChanges();</pre>
 		or fall back to Table Value Parameters passed to stored procedure.
 	</p>
 
-	<p>&nbsp;</p>
 
 	<h2>Reading existing records</h2>
 
 	<p>
-		The way you write you code can have significant impacts on
+		The way you write your code can have significant impacts on
 		performance when performing bulk operations. You have to really think about the data you
-		actually need and write the EF query to only return that.
+		actually need and write the EF query to only return that. Avoid doing any filtering outside of the query.
 	</p>
 
 	<p>
-		The question to ask is, “Am I getting this data because a) I
+		The question to ask is, "Am I getting this data because a) I
 		want to update it (right now), or b) to pass some data to somewhere else (e.g.
-		to a UI to show to a user).
+		to a UI to show to a user)".
 		<ul>
 			<li>
 				If the answer is b) you should restrict the data
-				being returned to only the fields you need by using a ‘Select’ statement on the
+				being returned to only the fields you need by using a 'Select' statement on the
 				query. Try to avoid using code loops to filter or extract data from sub items.
-				<br /><br />
+				<br />
 				If you really want (or need due to repository layer) to get the entire object but are not
-				intending to update the object you should use the ‘AsNoTracking’ option.
+				intending to update the object you should use the 'AsNoTracking' option.<br /><br />
 			</li>
 			<li>
 				If the answer is a) then you should still filter the results
@@ -169,7 +165,7 @@ db.SaveChanges();</pre>
 	</p>
 
 
-	<p>Time for some tests.</p>
+	<h3>Time for some tests.</h3>
 
 	<p>
 		In my example a collection of manufacturer Ids
@@ -195,14 +191,14 @@ return manufacturersWithSmallLightItems;</pre>
 	</p>
 
 	<p>
-		You could prevent this by adding “Items” to the “includes”
+		You could prevent this by adding "Items" to the "includes"
 		list, <pre>List&lt;string&gt; manufacturers = db.Manufacturers.Include(i => i.Items).Where(m => manufacturersToLookAt.Contains(m.Id)).ToList();
-</pre><br />which reduces the number of SQL calls to 1. However we’re still returning a
-		lot of data from the query that actually isn’t actually needed. Specifically we
-		are returning 1 row per sub-item, ie 1 row per “Item” per “manufacturer” that
-		matched the first query (including the full manufacturer data once per row
-		meaning 4000 rows of 11 columns of data = 44,000 fields of data if 4
-		manufacturers were being queried that have 1000 items each).
+</pre><br />which reduces the number of SQL calls to 1. However we're still returning a
+		lot of data from the query that actually isn't actually needed. <br />
+		Specifically we are returning 1 row per sub-item, I.E. 1 row per "Item" per "manufacturer" that
+		matched the first query (including the full manufacturer data once per row).<br />
+		E.g.: If there were 4 manufacturers with 1000 items each, this would result in 4000 rows of
+		11 columns of data = 44,000 fields of data.
 	</p>
 
 	<p>
@@ -217,8 +213,9 @@ return manufacturersWithSmallLightItems;</pre>
 		EF query the include statement is no longer needed.
 	</p>
 
+	<h3>Time for some tests. </h3>
 	<p>
-		Time for some tests. In the tests I am  querying 100 manufacturers which results in 98 matching objects.
+		In the tests I am  querying 100 manufacturers which results in 98 matching objects.
 	</p>
 
 	<p>
@@ -238,19 +235,20 @@ return manufacturersWithSmallLightItems;</pre>
 		<img border=0 width=470 height=181 id="Picture 7" src="entityframework_files/image003.png" />
 	</p>
 
-	<p>&nbsp;</p>
 
-	<a name="realworld"></a>
-	<h2>Real world usage</h2>
+
+	<h2><a name="realworld">Real world usage</a></h2>
 
 	<p>
 		In a production environment you may not have access to the context
-		object, if for instance your company has hidden EF behind a repository layer.
+		object, if for instance the existing architecture has
+		<a href="http://blog.magnusmontin.net/2013/05/30/generic-dal-using-entity-framework/comment-page-1/">hidden EF behind a repository layer.</a>
+		(Which <a href="https://www.google.co.uk/search?q=the%20repository%20is%20dead"> has both pros and cons.</a>)<br/>
 		In addition there may be some relationships in the database that are not
 		represented in the EF models with virtual properties. In order to still be able
 		to make efficient use of EF for bulk operations the repository layer will need
 		to return the EF IQueryable rather than for instance, an IList, and also allow
-		for specifying ‘includes’.
+		for specifying 'includes'.
 	</p>
 	<h3>Queries addressing tables not connected with 'virtual properties'.</h3>
 	<p>
@@ -277,7 +275,7 @@ var manus =
 			.ToList();</pre>
 	</p>
 
-	<p>&nbsp;</p>
-
+	<p>Sam Price</p>
+	<p class="license">Unless otherwise specified all code in this post is made available under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. Copyright 2015 Creou Limited.</p>
 </body>
 </html>
