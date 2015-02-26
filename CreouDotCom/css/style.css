@@ -597,6 +597,13 @@ ul.techList li {
   font-size: 16px;
   line-height: 32px;
 }
+#blogContent h2 {
+  margin-left: 10px;
+}
+#blogContent h3 {
+  margin-left: 10px;
+  font-family: Tahoma, Geneva, sans-serif;
+}
 #blogContent .imageContainer {
   text-align: center;
   margin: 10px;

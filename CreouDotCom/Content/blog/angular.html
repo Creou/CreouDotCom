@@ -10,8 +10,6 @@
 	<meta name="NamedFeeds" content="" />
 </head>
 <body>
-	<h1>Learning Angular</h1>
-
 	<p>
 		As part of the Conference App that we built recently I was
 		tasked with learning how to use Angular.
@@ -40,8 +38,8 @@
 
 
 
+	<h2>Prior Knowledge</h2>
 	<p>
-		<h2>Prior Knowledge</h2>
 		I’ve previously worked on WebAPI projects so I was familiar
 		with producing a REST back end. I’ve also worked on ASP.net and WebForms
 		projects and felt the pain of trying to understand the .Net page lifecycle and custom
@@ -56,8 +54,8 @@
 
 
 
+	<h2>Why</h2>
 	<p>
-		<h2>Why</h2>
 		Most of my previous experience has been with server side
 		technologies with only minimal front end experience and so I’m pushing myself
 		to keep up to date with newer and emerging front end technologies. Simon had
@@ -68,8 +66,8 @@
 
 
 
+	<h2>Why Angular</h2>
 	<p>
-		<h2>Why Angular</h2>
 		There are a number of single page app frameworks that we
 		could have chosen like Ember, or Backbone (a comparison of which can be found
 		here:  <a href="https://www.airpair.com/js/javascript-framework-comparison">https://www.airpair.com/js/javascript-framework-comparison</a>)
@@ -77,15 +75,15 @@
 
 	<p>
 		As a company we’ve recently been exposed to (the results of)
-		Angular on a client project and we were impressed by the results. Also it seems
+		Angular on a client project and we were suitably impressed. Also it seems
 		like one of the most popular frameworks and possibly the most supported so we
 		choose this as our framework of choice for this app.
 	</p>
 
 
 
+	<h2>Conference App</h2>
 	<p>
-		<h2>Conference App</h2>
 		The point of the app is to facilitate the experience of
 		attending a conference with multiple ‘Tracks’ of discourses that could be
 		attended. A user can view the various sessions grouped by either ‘Track’ or by
@@ -106,8 +104,8 @@
 
 
 
+	<h2>Initial impression.</h2>
 	<p>
-		<h2>Initial impression.</h2>
 		Having previously worked with ASP.net web pages I was
 		excited about the (relative/reported) simplicity of the Angular way. Had I had
 		experience of some of the other SPA frameworks this may not have been such a
@@ -133,8 +131,8 @@
 	</p>
 
 
+	<h2>Angular Philosophies</h2>
 	<p>
-		<h2>Angular Philosophies</h2>
 		Angular code is modular with all dependencies injected via
 		constructor injection. This makes it very easy to write automated tests for.
 		<pre>app.controller('controllerName', function (injected, dependancies, here) {
@@ -144,8 +142,8 @@
 	</p>
 
 
+	<h2>Structure</h2>
 	<p>
-		<h2>Structure</h2>
 		The ‘single page’ is constructed in the usual way, either as
 		a static page or delivered some other way if required (MVC). The single page
 		has a single ‘ng-app’ attribute on the html tag that signifies that this is an angular container.
@@ -176,7 +174,9 @@
 	});
 	...
 }
-</pre><br />
+</pre>
+	</p>
+	<p>
 		The routing can load templates via HTTP requests from separate
 		files reducing the amount of mark-up that must be loaded on app start-up/page
 		load. ‘Templates’ are basically the ‘view’ of MVVM and are Angular compiled HTML files that
@@ -211,7 +211,11 @@
 		var x = value;
 	});...
 }
-</pre><br/>Which are used to populate a drop down combo box bound in the view:<pre>								
+</pre>
+	</p>
+
+	<p>
+		Which are used to populate a drop down combo box bound in the view:<pre>								
 &lt;label class="col-xs-7 col-sm-8"&gt;What size company do you work for?&lt;/label&gt;
 &lt;div class="col-xs-5 col-sm-4"&gt;
 &lt;select ng-model="feedback.CompanySize" class="form-control" ng-disabled="formDisable" ng-options="size.Id as size.Text for size in sizes"&gt;
@@ -249,8 +253,8 @@ app.directive('sessionDetail', function () {
 	</p>
 
 
+	<h2>Issues</h2>
 	<p>
-		<h2>Issues</h2>
 		Some things can be quite trying, for instance directives are
 		supposed to be declared using pascalCase but consumed in hyphenated-format. E.g.
 		my session directive was declared as sessionDetail but had to be consumed as
@@ -266,8 +270,8 @@ app.directive('sessionDetail', function () {
 	</p>
 
 
+	<h2>Awesomeness</h2>
 	<p>
-		<h2>Awesomeness</h2>
 		It’s incredibly easy to knock up a CRUD style application in
 		minutes once you’ve got the hang of it with virtually no ‘boilerplate’.
 		<br /><a href="http://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/">Example on SitePoint.</a>
@@ -275,8 +279,8 @@ app.directive('sessionDetail', function () {
 
 
 
+	<h2>Conclusion</h2>
 	<p>
-		<h2>Conclusion</h2>
 		Would I be happy to use Angular again? Yes most definitely.
 		Even when you consider technologies like MVC which make CRUD style operations
 		easy, if you are going to use Ajax or Javascript at all in your pages then it
@@ -284,10 +288,10 @@ app.directive('sessionDetail', function () {
 	</p>
 
 
-<p>
-	<a href="http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single">http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single</a>
-</p>
-<p>Sam Price</p>
+	<p>
+		<a href="http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single">http://www.codeproject.com/Articles/808213/Developing-a-Large-Scale-Application-with-a-Single</a>
+	</p>
+	<p>Sam Price</p>
 	<p class="license">Unless otherwise specified all code in this post is made available under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. Copyright 2015 Creou Limited.</p>
 
 </body>
