@@ -300,6 +300,15 @@
     <Content Include="content\blog\oneweekgame_files\screenshot1.jpg" />
     <Content Include="content\blog\oneweekgame_files\title.jpg" />
     <Content Include="content\blog\python-cheat-sheet_files\PythonGuide.png" />
+    <Content Include="content\blog\xamarin.html" />
+    <Content Include="content\blog\xamarin_files\Activity Indicators.png" />
+    <Content Include="content\blog\xamarin_files\Device Art - By Time Page.png" />
+    <Content Include="content\blog\xamarin_files\Device Art - By Track Page.png" />
+    <Content Include="content\blog\xamarin_files\Device Art - Session Detail Page.png" />
+    <Content Include="content\blog\xamarin_files\Multi-Platform Targeting.png" />
+    <Content Include="content\blog\xamarin_files\MVVM.png" />
+    <Content Include="content\blog\xamarin_files\New Project Dialog.png" />
+    <Content Include="content\blog\xamarin_files\Xamarin Architecture.jpg" />
     <Content Include="content\blueprint.png" />
     <Content Include="content\bug.png" />
     <Content Include="content\cog.png" />
