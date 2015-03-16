@@ -21,18 +21,19 @@
 	</p>
 
 	<p class="PreviewEnd" />
+	<p>All code referred to in this blog post is available on GitHub: <a href="https://github.com/Creou/ConferenceApp">https://github.com/Creou/ConferenceApp</a></p>
 
 	<h2>Disclaimer</h2>
 
 	<p>
 		Having now finished the first phase of the conference app I
-		at least know something about Angular, although I’m still far from an expert. Undoubted
+		at least know something about Angular, although I'm still far from an expert. Undoubted
 		some of the ways that I have accomplished goals could have been done better,
 		but this is part of the learning experience.
 	</p>
 
 	<p>
-		This is not a ‘learn Angular’ blog, it’s a blog about me
+		This is not a 'learn Angular' blog, it's a blog about me
 		trying to learn Angular.
 	</p>
 
@@ -40,15 +41,15 @@
 
 	<h2>Prior Knowledge</h2>
 	<p>
-		I’ve previously worked on WebAPI projects so I was familiar
-		with producing a REST back end. I’ve also worked on ASP.net and WebForms
+		I've previously worked on WebAPI projects so I was familiar
+		with producing a REST back end. I've also worked on ASP.net and WebForms
 		projects and felt the pain of trying to understand the .Net page lifecycle and custom
 		controls.
 	</p>
 
 	<p>
-		I’ve not done a great deal of HTML or Javascript as most of
-		the projects I’d previously worked on had already existing front end systems in
+		I've not done a great deal of HTML or Javascript as most of
+		the projects I'd previously worked on had already existing front end systems in
 		place and had never worked on a single page web application.
 	</p>
 
@@ -57,7 +58,7 @@
 	<h2>Why</h2>
 	<p>
 		Most of my previous experience has been with server side
-		technologies with only minimal front end experience and so I’m pushing myself
+		technologies with only minimal front end experience and so I'm pushing myself
 		to keep up to date with newer and emerging front end technologies. Simon had
 		identified a need for an app to assist conference delegates, therefore this
 		seemed like a good excuse to get stuck into learning about a single page app
@@ -74,7 +75,7 @@
 	</p>
 
 	<p>
-		As a company we’ve recently been exposed to (the results of)
+		As a company we've recently been exposed to (the results of)
 		Angular on a client project and we were suitably impressed. Also it seems
 		like one of the most popular frameworks and possibly the most supported so we
 		choose this as our framework of choice for this app.
@@ -85,8 +86,8 @@
 	<h2>Conference App</h2>
 	<p>
 		The point of the app is to facilitate the experience of
-		attending a conference with multiple ‘Tracks’ of discourses that could be
-		attended. A user can view the various sessions grouped by either ‘Track’ or by
+		attending a conference with multiple 'Tracks' of discourses that could be
+		attended. A user can view the various sessions grouped by either 'Track' or by
 		time and be presented with list of session titles and times. By clicking on
 		those titles they can find out additional information such as room name/number,
 		the speaker, and the session description. The user can also choose to leave
@@ -106,17 +107,17 @@
 
 	<h2>Initial impression.</h2>
 	<p>
-		Having previously worked with ASP.net web pages I was
+		Having previously worked with ASP.net web forms I was
 		excited about the (relative/reported) simplicity of the Angular way. Had I had
 		experience of some of the other SPA frameworks this may not have been such a
-		novelty, but this was the first one I’d had opportunity to use/learn. (If you’ve
+		novelty, but this was the first one I'd had opportunity to use/learn. (If you've
 		ever done web forms you will understand).
 	</p>
 
 	<p>
 		I was developing the app in Visual Studio and being a fan of
 		Nuget used that to obtain the Angular package. There are some fairly easy to
-		follow videos on the Angular web site, although it wasn’t clear from the outset
+		follow videos on the Angular web site, although it wasn't clear from the outset
 		how these simple demos would translate to the requirements of my app.
 	</p>
 
@@ -125,9 +126,9 @@
 		found it initially confusing that there seems to be a fairly large number of
 		different ways to achieve the same result without any being obviously more
 		correct than others. I also think the Angular website needs some love to make
-		it more obvious where the tutorials are.  (They are in the ‘Develop’ toolbar
+		it more obvious where the tutorials are.  (They are in the 'Develop' toolbar
 		menu). I ended up watching 3rd party tutorial videos which may or
-		may not have contributed to the ‘many ways to do something’ issue.
+		may not have contributed to the 'many ways to do something' issue.
 	</p>
 
 
@@ -144,10 +145,10 @@
 
 	<h2>Structure</h2>
 	<p>
-		The ‘single page’ is constructed in the usual way, either as
+		The 'single page' is constructed in the usual way, either as
 		a static page or delivered some other way if required (MVC). The single page
-		has a single ‘ng-app’ attribute on the html tag that signifies that this is an angular container.
-		Also on the static page there is an element with an ‘ng-view’ attribute. This signifies
+		has a single 'ng-app' attribute on the html tag that signifies that this is an angular container.
+		Also on the static page there is an element with an 'ng-view' attribute. This signifies
 		the container for all of the Angular generated content. Additional content can appear outside of this but will not be inserted by Angular.
 		<pre>&lt;html lang="en" ng-app="app"&gt;
 &lt;head&gt;...&lt;/head&gt;
@@ -160,8 +161,8 @@
 	</p>
 	<h3>Routing</h3>
 	<p>
-		Navigation between ‘virtual’ pages is via anchor style links
-		which are ‘routed’ via a routing engine to specified ‘controllers’ and ‘templates’.
+		Navigation between 'virtual' pages is via anchor style links
+		which are 'routed' via a routing engine to specified 'controllers' and 'templates'.
 		<pre>app.config(function ($routeProvider, $locationProvider) {
 	...
 	$routeProvider.when('/byTrack', {
@@ -179,7 +180,7 @@
 	<p>
 		The routing can load templates via HTTP requests from separate
 		files reducing the amount of mark-up that must be loaded on app start-up/page
-		load. ‘Templates’ are basically the ‘view’ of MVVM and are Angular compiled HTML files that
+		load. 'Templates' are basically the 'view' of MVVM and are Angular compiled HTML files that
 		will get inserted into the ng-view container.
 	</p>
 	<p>
@@ -200,7 +201,7 @@
 	<p>
 		Controllers, like other angular components are just JavaScript
 		functions. The controller prepares data making it available for binding to the
-		view (equivalent to the view-model?). In our conference app the controllers’
+		view (equivalent to the view-model?). In our conference app the controllers'
 		job is typically to make a request from the data layer, and then sort/filter
 		the data as required. It is also where event listeners are registered to deal
 		with e.g. button clicks and then sending the data back to the data layer.
@@ -258,13 +259,13 @@ app.directive('sessionDetail', function () {
 		Some things can be quite trying, for instance directives are
 		supposed to be declared using pascalCase but consumed in hyphenated-format. E.g.
 		my session directive was declared as sessionDetail but had to be consumed as
-		session-detail. It’s a feature that you <strong><em>can</em></strong>	 do this however I didn’t realise
+		session-detail. It's a feature that you <strong><em>can</em></strong>	 do this however I didn't realise
 		at first that it was <strong><em>required</em></strong>. You cannot consume your directives in
-		their declared pascalCase, it just doesn’t work. There is actually a page on
+		their declared pascalCase, it just doesn't work. There is actually a page on
 		the Angular site that lists some common pitfalls, but personally I think these
-		will depend on your programming background. I also had issues with ‘promises’.
-		This is possibly due to the various ‘types’ of promises that exist currently
-		due to non-universal browser support, but either way promises didn’t seem to
+		will depend on your programming background. I also had issues with 'promises'.
+		This is possibly due to the various 'types' of promises that exist currently
+		due to non-universal browser support, but either way promises didn't seem to
 		work as expected in a consistent manner which meant I ended up using call backs
 		some of the time.
 	</p>
@@ -272,8 +273,8 @@ app.directive('sessionDetail', function () {
 
 	<h2>Awesomeness</h2>
 	<p>
-		It’s incredibly easy to knock up a CRUD style application in
-		minutes once you’ve got the hang of it with virtually no ‘boilerplate’.
+		It's incredibly easy to knock up a CRUD style application in
+		minutes once you've got the hang of it with virtually no 'boilerplate'.
 		<br /><a href="http://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/">Example on SitePoint.</a>
 	</p>
 
@@ -294,5 +295,6 @@ app.directive('sessionDetail', function () {
 	<p>Sam Price</p>
 	<p class="license">Unless otherwise specified all code in this post is made available under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. Copyright 2015 Creou Limited.</p>
 
+	<div class="clear"></div>
 </body>
 </html>
